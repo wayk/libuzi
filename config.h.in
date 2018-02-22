@@ -1,0 +1,23 @@
+#ifndef __CONFIG_H
+#define __CONFIG_H
+
+#cmakedefine HAVE_FCNTL_H
+#cmakedefine HAVE_UNISTD_H
+#cmakedefine HAVE_STDINT_H
+#cmakedefine HAVE_INTTYPES_H
+#cmakedefine HAVE_SYS_MODEM_H
+#cmakedefine HAVE_SYS_FILIO_H
+#cmakedefine HAVE_SYS_SELECT_H
+#cmakedefine HAVE_SYS_STRTIO_H
+#cmakedefine HAVE_EVENTFD_H
+#cmakedefine HAVE_TIMERFD_H
+#cmakedefine HAVE_TM_GMTOFF
+#cmakedefine HAVE_AIO_H
+#cmakedefine HAVE_POLL_H
+#cmakedefine HAVE_PTHREAD_MUTEX_TIMEDLOCK
+#cmakedefine HAVE_VALGRIND_MEMCHECK_H
+#cmakedefine HAVE_EXECINFO_H
+#cmakedefine WITH_EVENTFD_READ_WRITE
+#cmakedefine HAVE_MATH_C99_LONG_DOUBLE
+
+#endif
