@@ -157,7 +157,6 @@ HANDLE CreateSemaphoreW(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lIniti
 	semaphore->sem = (winpr_sem_t*) malloc(sizeof(winpr_sem_t));
 	if (!semaphore->sem)
 	{
-		WLog_ERR(TAG, "failed to allocate semaphore memory");
 		free(semaphore);
 		return NULL;
 	}
@@ -167,7 +166,6 @@ HANDLE CreateSemaphoreW(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lIniti
 	if (sem_init(semaphore->sem, 0, lMaximumCount) == -1)
 #endif
 	{
-		WLog_ERR(TAG, "failed to create semaphore");
 		free(semaphore->sem);
 		free(semaphore);
 		return NULL;

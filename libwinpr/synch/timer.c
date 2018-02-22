@@ -184,7 +184,6 @@ int InitializeWaitableTimer(WINPR_TIMER* timer)
 		}
 
 #else
-		WLog_ERR(TAG, "%s: os specific implementation is missing", __FUNCTION__);
 		result = -1;
 #endif
 	}
@@ -204,7 +203,6 @@ int InitializeWaitableTimer(WINPR_TIMER* timer)
 		}
 
 #else
-		WLog_ERR(TAG, "%s: os specific implementation is missing", __FUNCTION__);
 		result = -1;
 #endif
 	}

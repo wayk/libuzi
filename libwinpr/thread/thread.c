@@ -160,51 +160,6 @@ static HANDLE_OPS ops =
 	ThreadCleanupHandle
 };
 
-
-static void dump_thread(WINPR_THREAD* thread)
-{
-#if defined(WITH_DEBUG_THREADS)
-	void* stack = winpr_backtrace(20);
-	char** msg;
-	size_t used, i;
-	WLog_DBG(TAG, "Called from:");
-	msg = winpr_backtrace_symbols(stack, &used);
-
-	for (i = 0; i < used; i++)
-		WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
-
-	free(msg);
-	winpr_backtrace_free(stack);
-	WLog_DBG(TAG, "Thread handle created still not closed!");
-	msg = winpr_backtrace_symbols(thread->create_stack, &used);
-
-	for (i = 0; i < used; i++)
-		WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
-
-	free(msg);
-
-	if (thread->started)
-	{
-		WLog_DBG(TAG, "Thread still running!");
-	}
-	else if (!thread->exit_stack)
-	{
-		WLog_DBG(TAG, "Thread suspended.");
-	}
-	else
-	{
-		WLog_DBG(TAG, "Thread exited at:");
-		msg = winpr_backtrace_symbols(thread->exit_stack, &used);
-
-		for (i = 0; i < used; i++)
-			WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
-
-		free(msg);
-	}
-
-#endif
-}
-
 /**
  * TODO: implement thread suspend/resume using pthreads
  * http://stackoverflow.com/questions/3140867/suspend-pthreads-without-using-condition
@@ -362,7 +317,6 @@ static BOOL winpr_StartThread(WINPR_THREAD* thread)
 		goto error;
 
 	pthread_attr_destroy(&attr);
-	dump_thread(thread);
 	return TRUE;
 error:
 	pthread_attr_destroy(&attr);
@@ -386,10 +340,6 @@ HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes,
 	thread->lpStartAddress = lpStartAddress;
 	thread->lpThreadAttributes = lpThreadAttributes;
 	thread->ops = &ops;
-#if defined(WITH_DEBUG_THREADS)
-	thread->create_stack = winpr_backtrace(20);
-	dump_thread(thread);
-#endif
 	thread->pipe_fd[0] = -1;
 	thread->pipe_fd[1] = -1;
 #ifdef HAVE_EVENTFD_H
@@ -404,7 +354,6 @@ HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes,
 
 	if (pipe(thread->pipe_fd) < 0)
 	{
-		WLog_ERR(TAG, "failed to create thread pipe");
 		goto error_pipefd0;
 	}
 
@@ -495,13 +444,6 @@ void cleanup_handle(void* obj)
 	if (thread_list && ListDictionary_Contains(thread_list, &thread->thread))
 		ListDictionary_Remove(thread_list, &thread->thread);
 
-#if defined(WITH_DEBUG_THREADS)
-	if (thread->create_stack)
-		winpr_backtrace_free(thread->create_stack);
-
-	if (thread->exit_stack)
-		winpr_backtrace_free(thread->exit_stack);
-#endif
 	free(thread);
 }
 
@@ -511,16 +453,15 @@ BOOL ThreadCloseHandle(HANDLE handle)
 
 	if (!thread_list)
 	{
-		dump_thread(thread);
+
 	}
 	else if (!ListDictionary_Contains(thread_list, &thread->thread))
 	{
-		dump_thread(thread);
+
 	}
 	else
 	{
 		ListDictionary_Lock(thread_list);
-		dump_thread(thread);
 
 		if ((thread->started) && (WaitForSingleObject(thread, 0) != WAIT_OBJECT_0))
 		{
@@ -551,16 +492,10 @@ VOID ExitThread(DWORD dwExitCode)
 
 	if (!thread_list)
 	{
-#if defined(WITH_DEBUG_THREADS)
-		DumpThreadHandles();
-#endif
 		pthread_exit(0);
 	}
 	else if (!ListDictionary_Contains(thread_list, &tid))
 	{
-#if defined(WITH_DEBUG_THREADS)
-		DumpThreadHandles();
-#endif
 		pthread_exit(0);
 	}
 	else
@@ -571,9 +506,7 @@ VOID ExitThread(DWORD dwExitCode)
 		assert(thread);
 		thread->exited = TRUE;
 		thread->dwExitCode = dwExitCode;
-#if defined(WITH_DEBUG_THREADS)
-		thread->exit_stack = winpr_backtrace(20);
-#endif
+
 		ListDictionary_Unlock(thread_list);
 		set_event(thread);
 		rc = thread->dwExitCode;
@@ -606,15 +539,11 @@ HANDLE _GetCurrentThread(VOID)
 
 	if (!thread_list)
 	{
-#if defined(WITH_DEBUG_THREADS)
-		DumpThreadHandles();
-#endif
+
 	}
 	else if (!ListDictionary_Contains(thread_list, &tid))
 	{
-#if defined(WITH_DEBUG_THREADS)
-		DumpThreadHandles();
-#endif
+
 	}
 	else
 	{
@@ -697,7 +626,7 @@ BOOL TerminateThread(HANDLE hThread, DWORD dwExitCode)
 #ifndef ANDROID
 	pthread_cancel(thread->thread);
 #else
-	WLog_ERR(TAG, "Function not supported on this platform!");
+	/* function not supported on this platform! */
 #endif
 
 	if (pthread_mutex_unlock(&thread->mutex))
@@ -707,71 +636,5 @@ BOOL TerminateThread(HANDLE hThread, DWORD dwExitCode)
 	return TRUE;
 }
 
-#if defined(WITH_DEBUG_THREADS)
-VOID DumpThreadHandles(void)
-{
-	char** msg;
-	size_t used, i;
-	void* stack = winpr_backtrace(20);
-	WLog_DBG(TAG, "---------------- Called from ----------------------------");
-	msg = winpr_backtrace_symbols(stack, &used);
-
-	for (i = 0; i < used; i++)
-	{
-		WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
-	}
-
-	free(msg);
-	winpr_backtrace_free(stack);
-	WLog_DBG(TAG, "---------------- Start Dumping thread handles -----------");
-
-	if (!thread_list)
-	{
-		WLog_DBG(TAG, "All threads properly shut down and disposed of.");
-	}
-	else
-	{
-		ULONG_PTR* keys = NULL;
-		ListDictionary_Lock(thread_list);
-		int x, count = ListDictionary_GetKeys(thread_list, &keys);
-		WLog_DBG(TAG, "Dumping %d elements", count);
-
-		for (x = 0; x < count; x++)
-		{
-			WINPR_THREAD* thread = ListDictionary_GetItemValue(thread_list,
-			                       (void*) keys[x]);
-			WLog_DBG(TAG, "Thread [%d] handle created still not closed!", x);
-			msg = winpr_backtrace_symbols(thread->create_stack, &used);
-
-			for (i = 0; i < used; i++)
-			{
-				WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
-			}
-
-			free(msg);
-
-			if (thread->started)
-			{
-				WLog_DBG(TAG, "Thread [%d] still running!",	x);
-			}
-			else
-			{
-				WLog_DBG(TAG, "Thread [%d] exited at:", x);
-				msg = winpr_backtrace_symbols(thread->exit_stack, &used);
-
-				for (i = 0; i < used; i++)
-					WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
-
-				free(msg);
-			}
-		}
-
-		free(keys);
-		ListDictionary_Unlock(thread_list);
-	}
-
-	WLog_DBG(TAG, "---------------- End Dumping thread handles -------------");
-}
-#endif
 #endif
 

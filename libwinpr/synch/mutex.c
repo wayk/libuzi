@@ -69,24 +69,6 @@ BOOL MutexCloseHandle(HANDLE handle)
 
 	if ((rc = pthread_mutex_destroy(&mutex->mutex)))
 	{
-#if defined(WITH_DEBUG_MUTEX)
-		{
-			size_t used = 0, i;
-			void* stack = winpr_backtrace(20);
-			char **msg = NULL;
-
-			if (stack)
-				msg = winpr_backtrace_symbols(stack, &used);
-
-			if (msg)
-			{
-				for(i=0; i<used; i++)
-					WLog_ERR(TAG, "%2"PRIdz": %s", i, msg[i]);
-			}
-			free (msg);
-			winpr_backtrace_free(stack);
-		}
-#endif
 		/**
 		 * Note: unfortunately we may not return FALSE here since CloseHandle(hmutex) on
 		 * Windows always seems to succeed independently of the mutex object locking state
