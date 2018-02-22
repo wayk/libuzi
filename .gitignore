@@ -3,5 +3,6 @@
 Makefile
 CMakeFiles/
 cmake_install.cmake
+CTestTestfile.cmake
 cmake-build-*
 

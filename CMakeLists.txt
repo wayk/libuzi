@@ -345,6 +345,18 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_INSTALL_RPATH "\$ORIGIN/../${CMAKE_INSTALL_LIBDIR}:\$ORIGIN/..")
 
+include(CTest)
+
+if(BUILD_TESTING)
+	enable_testing()
+
+	if(MSVC)
+		set(TESTING_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+	else()
+		set(TESTING_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/testing")
+	endif()
+endif()
+
 # WinPR
 
 set(WINPR_VERSION_MAJOR "2")
@@ -460,13 +472,4 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-include(CTest)
-
-if(BUILD_TESTING)
-	enable_testing()
-
-	if(MSVC)
-		set(TESTING_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-	endif()
-endif()
 
