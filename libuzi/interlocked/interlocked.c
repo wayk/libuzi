@@ -46,8 +46,8 @@ VOID InitializeSListHead(WINPR_PSLIST_HEADER ListHead)
 
 WINPR_PSLIST_ENTRY InterlockedPushEntrySList(WINPR_PSLIST_HEADER ListHead, WINPR_PSLIST_ENTRY ListEntry)
 {
-    WINPR_SLIST_HEADER old;
-    WINPR_SLIST_HEADER newHeader;
+	WINPR_SLIST_HEADER old;
+	WINPR_SLIST_HEADER newHeader;
 
 #ifdef _WIN64
 	newHeader.HeaderX64.NextEntry = (((ULONG_PTR) ListEntry) >> 4);
@@ -97,9 +97,9 @@ WINPR_PSLIST_ENTRY InterlockedPushListSListEx(WINPR_PSLIST_HEADER ListHead, WINP
 
 WINPR_PSLIST_ENTRY InterlockedPopEntrySList(WINPR_PSLIST_HEADER ListHead)
 {
-    WINPR_SLIST_HEADER old;
-    WINPR_SLIST_HEADER newHeader;
-    WINPR_PSLIST_ENTRY entry;
+	WINPR_SLIST_HEADER old;
+	WINPR_SLIST_HEADER newHeader;
+	WINPR_PSLIST_ENTRY entry;
 
 #ifdef _WIN64
 	while (1)
@@ -142,8 +142,8 @@ WINPR_PSLIST_ENTRY InterlockedPopEntrySList(WINPR_PSLIST_HEADER ListHead)
 
 WINPR_PSLIST_ENTRY InterlockedFlushSList(WINPR_PSLIST_HEADER ListHead)
 {
-    WINPR_SLIST_HEADER old;
-    WINPR_SLIST_HEADER newHeader;
+	WINPR_SLIST_HEADER old;
+	WINPR_SLIST_HEADER newHeader;
 
 	if (!QueryDepthSList(ListHead))
 		return NULL;
@@ -344,8 +344,8 @@ BOOL IsListEmpty(const WINPR_LIST_ENTRY* ListHead)
 
 BOOL RemoveEntryList(WINPR_PLIST_ENTRY Entry)
 {
-    WINPR_PLIST_ENTRY OldFlink;
-    WINPR_PLIST_ENTRY OldBlink;
+	WINPR_PLIST_ENTRY OldFlink;
+	WINPR_PLIST_ENTRY OldBlink;
 
 	OldFlink = Entry->Flink;
 	OldBlink = Entry->Blink;
@@ -357,7 +357,7 @@ BOOL RemoveEntryList(WINPR_PLIST_ENTRY Entry)
 
 VOID InsertHeadList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
 {
-    WINPR_PLIST_ENTRY OldFlink;
+	WINPR_PLIST_ENTRY OldFlink;
 
 	OldFlink = ListHead->Flink;
 	Entry->Flink = OldFlink;
@@ -368,8 +368,8 @@ VOID InsertHeadList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
 
 WINPR_PLIST_ENTRY RemoveHeadList(WINPR_PLIST_ENTRY ListHead)
 {
-    WINPR_PLIST_ENTRY Flink;
-    WINPR_PLIST_ENTRY Entry;
+	WINPR_PLIST_ENTRY Flink;
+	WINPR_PLIST_ENTRY Entry;
 
 	Entry = ListHead->Flink;
 	Flink = Entry->Flink;
@@ -381,7 +381,7 @@ WINPR_PLIST_ENTRY RemoveHeadList(WINPR_PLIST_ENTRY ListHead)
 
 VOID InsertTailList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
 {
-    WINPR_PLIST_ENTRY OldBlink;
+	WINPR_PLIST_ENTRY OldBlink;
 
 	OldBlink = ListHead->Blink;
 	Entry->Flink = ListHead;
@@ -392,8 +392,8 @@ VOID InsertTailList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
 
 WINPR_PLIST_ENTRY RemoveTailList(WINPR_PLIST_ENTRY ListHead)
 {
-    WINPR_PLIST_ENTRY Blink;
-    WINPR_PLIST_ENTRY Entry;
+	WINPR_PLIST_ENTRY Blink;
+	WINPR_PLIST_ENTRY Entry;
 
 	Entry = ListHead->Blink;
 	Blink = Entry->Blink;
@@ -405,7 +405,7 @@ WINPR_PLIST_ENTRY RemoveTailList(WINPR_PLIST_ENTRY ListHead)
 
 VOID AppendTailList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY ListToAppend)
 {
-    WINPR_PLIST_ENTRY ListEnd = ListHead->Blink;
+	WINPR_PLIST_ENTRY ListEnd = ListHead->Blink;
 
 	ListHead->Blink->Flink = ListToAppend;
 	ListHead->Blink = ListToAppend->Blink;
@@ -421,7 +421,7 @@ VOID PushEntryList(WINPR_PSINGLE_LIST_ENTRY ListHead, WINPR_PSINGLE_LIST_ENTRY E
 
 WINPR_PSINGLE_LIST_ENTRY PopEntryList(WINPR_PSINGLE_LIST_ENTRY ListHead)
 {
-    WINPR_PSINGLE_LIST_ENTRY FirstEntry;
+	WINPR_PSINGLE_LIST_ENTRY FirstEntry;
 
 	FirstEntry = ListHead->Next;
 
@@ -430,4 +430,3 @@ WINPR_PSINGLE_LIST_ENTRY PopEntryList(WINPR_PSINGLE_LIST_ENTRY ListHead)
 
 	return FirstEntry;
 }
-

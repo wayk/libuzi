@@ -67,14 +67,4 @@ BOOL DuplicateHandle(HANDLE hSourceProcessHandle, HANDLE hSourceHandle, HANDLE h
 	return TRUE;
 }
 
-BOOL GetHandleInformation(HANDLE hObject, LPDWORD lpdwFlags)
-{
-	return TRUE;
-}
-
-BOOL SetHandleInformation(HANDLE hObject, DWORD dwMask, DWORD dwFlags)
-{
-	return TRUE;
-}
-
 #endif

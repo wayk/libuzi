@@ -28,46 +28,6 @@
 
 #include <uzi/thread.h>
 
-/**
- * api-ms-win-core-processthreads-l1-1-1.dll
- *
- * CreateRemoteThread
- * CreateRemoteThreadEx
- * CreateThread
- * DeleteProcThreadAttributeList
- * ExitThread
- * FlushInstructionCache
- * FlushProcessWriteBuffers
- * GetCurrentThread
- * GetCurrentThreadId
- * GetCurrentThreadStackLimits
- * GetExitCodeThread
- * GetPriorityClass
- * GetStartupInfoW
- * GetThreadContext
- * GetThreadId
- * GetThreadIdealProcessorEx
- * GetThreadPriority
- * GetThreadPriorityBoost
- * GetThreadTimes
- * InitializeProcThreadAttributeList
- * OpenThread
- * OpenThreadToken
- * QueryProcessAffinityUpdateMode
- * QueueUserAPC
- * ResumeThread
- * SetPriorityClass
- * SetThreadContext
- * SetThreadPriority
- * SetThreadPriorityBoost
- * SetThreadStackGuarantee
- * SetThreadToken
- * SuspendThread
- * SwitchToThread
- * TerminateThread
- * UpdateProcThreadAttribute
- */
-
 #ifndef _WIN32
 
 #include <uzi/crt.h>

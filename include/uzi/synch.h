@@ -102,22 +102,6 @@ WINPR_API BOOL ResetEvent(HANDLE hEvent);
 #define OpenEvent		OpenEventA
 #endif
 
-/* Slim Reader/Writer (SRW) Lock */
-
-typedef PVOID RTL_SRWLOCK;
-typedef RTL_SRWLOCK SRWLOCK, *PSRWLOCK;
-
-WINPR_API VOID InitializeSRWLock(PSRWLOCK SRWLock);
-
-WINPR_API VOID AcquireSRWLockExclusive(PSRWLOCK SRWLock);
-WINPR_API VOID AcquireSRWLockShared(PSRWLOCK SRWLock);
-
-WINPR_API BOOL TryAcquireSRWLockExclusive(PSRWLOCK SRWLock);
-WINPR_API BOOL TryAcquireSRWLockShared(PSRWLOCK SRWLock);
-
-WINPR_API VOID ReleaseSRWLockExclusive(PSRWLOCK SRWLock);
-WINPR_API VOID ReleaseSRWLockShared(PSRWLOCK SRWLock);
-
 /* Condition Variable */
 
 typedef PVOID RTL_CONDITION_VARIABLE;
@@ -165,13 +149,6 @@ WINPR_API VOID DeleteCriticalSection(LPCRITICAL_SECTION lpCriticalSection);
 WINPR_API VOID Sleep(DWORD dwMilliseconds);
 WINPR_API DWORD SleepEx(DWORD dwMilliseconds, BOOL bAlertable);
 
-/* Address */
-
-WINPR_API VOID WakeByAddressAll(PVOID Address);
-WINPR_API VOID WakeByAddressSingle(PVOID Address);
-
-WINPR_API BOOL WaitOnAddress(VOID volatile *Address, PVOID CompareAddress, SIZE_T AddressSize, DWORD dwMilliseconds);
-
 /* Wait */
 
 #define INFINITE		0xFFFFFFFF
@@ -191,8 +168,6 @@ WINPR_API DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds);
 WINPR_API DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, BOOL bAlertable);
 WINPR_API DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds);
 WINPR_API DWORD WaitForMultipleObjectsEx(DWORD nCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds, BOOL bAlertable);
-
-WINPR_API DWORD SignalObjectAndWait(HANDLE hObjectToSignal, HANDLE hObjectToWaitOn, DWORD dwMilliseconds, BOOL bAlertable);
 
 /* Waitable Timer */
 
