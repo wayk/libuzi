@@ -1,8 +1,15 @@
 
 .idea/
+*.dir/
 Makefile
 CMakeFiles/
 cmake_install.cmake
 CTestTestfile.cmake
 cmake-build-*
 
+x64/
+x86/
+*.sln
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters

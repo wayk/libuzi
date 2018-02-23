@@ -629,10 +629,10 @@ ConversionResult ConvertUTF8toUTF16(
 			if (!computeLength)
 			{
 				WCHAR wchar;
-				wchar = (ch >> halfShift) + UNI_SUR_HIGH_START;
+				wchar = (WCHAR) ((ch >> halfShift) + UNI_SUR_HIGH_START);
 				Data_Write_UINT16(target, wchar);
 				target++;
-				wchar = (ch & halfMask) + UNI_SUR_LOW_START;
+				wchar = (WCHAR) ((ch & halfMask) + UNI_SUR_LOW_START);
 				Data_Write_UINT16(target, wchar);
 				target++;
 			}

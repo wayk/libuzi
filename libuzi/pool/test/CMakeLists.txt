@@ -23,5 +23,5 @@ foreach(test ${${MODULE_PREFIX}_TESTS})
 	add_test(${TestName} ${TESTING_OUTPUT_DIRECTORY}/${MODULE_NAME} ${TestName})
 endforeach()
 
-set_property(TARGET ${MODULE_NAME} PROPERTY FOLDER "uzi/test")
+set_property(TARGET ${MODULE_NAME} PROPERTY FOLDER "test")
 

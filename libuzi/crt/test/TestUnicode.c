@@ -4,6 +4,10 @@
 #include <uzi/error.h>
 #include <uzi/windows.h>
 
+#if defined(_MSC_VER)
+#pragma warning(disable : 4267)
+#endif
+
 /* Letters */
 
 static BYTE c_cedilla_UTF8[] = "\xC3\xA7\x00";
@@ -115,7 +119,7 @@ int convert_utf8_to_utf16(BYTE* lpMultiByteStr, BYTE* expected_lpWideCharStr, in
 	int cchWideChar;
 	LPWSTR lpWideCharStr;
 
-	cbMultiByte = strlen((char*) lpMultiByteStr);
+	cbMultiByte = (int) strlen((char*) lpMultiByteStr);
 	cchWideChar = MultiByteToWideChar(CP_UTF8, 0, (LPCSTR) lpMultiByteStr, -1, NULL, 0);
 
 	printf("MultiByteToWideChar Input UTF8 String:\n");
@@ -187,7 +191,7 @@ int convert_utf16_to_utf8(BYTE* lpWideCharStr, BYTE* expected_lpMultiByteStr, in
 	int cbMultiByte;
 	LPSTR lpMultiByteStr = NULL;
 
-	cchWideChar = _wcslen((WCHAR*) lpWideCharStr);
+	cchWideChar = (int) _wcslen((WCHAR*) lpWideCharStr);
 	cbMultiByte = WideCharToMultiByte(CP_UTF8, 0, (LPCWSTR) lpWideCharStr, -1, NULL, 0, NULL, NULL);
 
 	printf("WideCharToMultiByte Input UTF16 String:\n");
