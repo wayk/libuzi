@@ -46,3 +46,31 @@ uint32_t UziWaitMulti(uint32_t nCount, const UZI_HANDLE* handles, bool waitAll, 
 	waitStatus = WaitForMultipleObjects(nCount, (const HANDLE*) handles, bWaitAll, timeout);
 	return waitStatus;
 }
+
+bool UziInitCS(UZI_CS* cs, uint32_t spinCount, uint32_t flags)
+{
+	if (!spinCount)
+		spinCount = 4000;
+
+	return InitializeCriticalSectionEx((CRITICAL_SECTION*) cs, spinCount, flags) ? true : false;
+}
+
+void UziEnterCS(UZI_CS* cs)
+{
+	EnterCriticalSection((CRITICAL_SECTION*) cs);
+}
+
+bool UziTryEnterCS(UZI_CS* cs)
+{
+	return TryEnterCriticalSection((CRITICAL_SECTION*) cs) ? true : false;
+}
+
+void UziLeaveCS(UZI_CS* cs)
+{
+	LeaveCriticalSection((CRITICAL_SECTION*) cs);
+}
+
+void UziDeleteCS(UZI_CS* cs)
+{
+	DeleteCriticalSection((CRITICAL_SECTION*) cs);
+}

@@ -30,6 +30,18 @@ bool UziCloseHandle(UZI_HANDLE handle);
 uint32_t UziWaitSingle(UZI_HANDLE handle, uint32_t timeout);
 uint32_t UziWaitMulti(uint32_t nCount, const UZI_HANDLE* handles, bool waitAll, uint32_t timeout);
 
+struct uzi_cs
+{
+	uint8_t opaque[32];
+};
+typedef struct uzi_cs UZI_CS;
+
+bool UziInitCS(UZI_CS* cs, uint32_t spinCount, uint32_t flags);
+void UziEnterCS(UZI_CS* cs);
+bool UziTryEnterCS(UZI_CS* cs);
+void UziLeaveCS(UZI_CS* cs);
+void UziDeleteCS(UZI_CS* cs);
+
 #ifdef __cplusplus
 }
 #endif
