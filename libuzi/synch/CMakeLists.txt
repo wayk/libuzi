@@ -17,7 +17,6 @@
 
 uzi_module_add(
 	barrier.c
-	condition.c
 	critical.c
 	event.c
 	init.c
