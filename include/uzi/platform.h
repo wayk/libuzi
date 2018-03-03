@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_PLATFORM_H
-#define WINPR_PLATFORM_H
+#ifndef UZI_PLATFORM_H
+#define UZI_PLATFORM_H
 
 #include <stdlib.h>
 
@@ -291,4 +291,4 @@
 
 #endif /* __BYTE_ORDER */
 
-#endif /* WINPR_PLATFORM_H */
+#endif /* UZI_PLATFORM_H */

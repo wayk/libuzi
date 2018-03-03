@@ -520,31 +520,6 @@ int TestUnicode(int argc, char* argv[])
 
 	if (!test_ConvertToUnicode_wrapper())
 		return -1;
-/*
 
-	printf("----------------------------------------------------------\n\n");
-
-	if (0)
-	{
-		BYTE src[] = { 'R',0,'I',0,'C',0,'H',0,' ',0, 'T',0,'E',0,'X',0,'T',0,' ',0,'F',0,'O',0,'R',0,'M',0,'A',0,'T',0,'@',0,'@',0 };
-		//BYTE src[] = { 'R',0,'I',0,'C',0,'H',0,' ',0,  0,0,  'T',0,'E',0,'X',0,'T',0,' ',0,'F',0,'O',0,'R',0,'M',0,'A',0,'T',0,'@',0,'@',0 };
-		//BYTE src[] = { 0,0,'R',0,'I',0,'C',0,'H',0,' ',0, 'T',0,'E',0,'X',0,'T',0,' ',0,'F',0,'O',0,'R',0,'M',0,'A',0,'T',0,'@',0,'@',0 };
-		char* dst = NULL;
-		int num;
-		num = ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) src, 16, &dst, 0, NULL, NULL);
-		printf("ConvertFromUnicode returned %d dst=[%s]\n", num, dst);
-		string_hexdump((BYTE*)dst, num+1);
-	}
-	if (1)
-	{
-		char src[] = "RICH TEXT FORMAT@@@@@@";
-		WCHAR *dst = NULL;
-		int num;
-		num = ConvertToUnicode(CP_UTF8, 0, src, 16, &dst, 0);
-		printf("ConvertToUnicode returned %d dst=%p\n", num, (void*) dst);
-		string_hexdump((BYTE*)dst, num * 2 + 2);
-
-	}
-*/
 	return 0;
 }

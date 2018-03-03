@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_WINDOWS_H
-#define WINPR_WINDOWS_H
+#ifndef UZI_WINDOWS_H
+#define UZI_WINDOWS_H
 
 /* Windows header include order is important, use this instead of including windows.h directly */
 
@@ -34,4 +34,4 @@
 
 #endif
 
-#endif /* WINPR_WINDOWS_H */
+#endif /* UZI_WINDOWS_H */

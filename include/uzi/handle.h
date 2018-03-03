@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_HANDLE_H
-#define WINPR_HANDLE_H
+#ifndef UZI_HANDLE_H
+#define UZI_HANDLE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,11 +35,11 @@ extern "C" {
 #define INVALID_HANDLE_VALUE			((HANDLE) (LONG_PTR) - 1)
 #endif
 
-#define WINPR_FD_READ_BIT				0
-#define WINPR_FD_READ					(1 << WINPR_FD_READ_BIT)
+#define UZI_FD_READ_BIT				0
+#define UZI_FD_READ					(1 << UZI_FD_READ_BIT)
 
-#define WINPR_FD_WRITE_BIT				1
-#define WINPR_FD_WRITE					(1 << WINPR_FD_WRITE_BIT)
+#define UZI_FD_WRITE_BIT				1
+#define UZI_FD_WRITE					(1 << UZI_FD_WRITE_BIT)
 
 #ifndef _WIN32
 
@@ -49,9 +49,9 @@ extern "C" {
 #define HANDLE_FLAG_INHERIT			0x00000001
 #define HANDLE_FLAG_PROTECT_FROM_CLOSE		0x00000002
 
-WINPR_API BOOL CloseHandle(HANDLE hObject);
+UZI_API BOOL CloseHandle(HANDLE hObject);
 
-WINPR_API BOOL DuplicateHandle(HANDLE hSourceProcessHandle,
+UZI_API BOOL DuplicateHandle(HANDLE hSourceProcessHandle,
 				HANDLE hSourceHandle,
 				HANDLE hTargetProcessHandle,
 				LPHANDLE lpTargetHandle,
@@ -64,5 +64,5 @@ WINPR_API BOOL DuplicateHandle(HANDLE hSourceProcessHandle,
 }
 #endif
 
-#endif /* WINPR_HANDLE_H */
+#endif /* UZI_HANDLE_H */
 

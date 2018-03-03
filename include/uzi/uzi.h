@@ -42,6 +42,52 @@ bool UziTryEnterCS(UZI_CS* cs);
 void UziLeaveCS(UZI_CS* cs);
 void UziDeleteCS(UZI_CS* cs);
 
+int UziUtf8toUtf16(const uint8_t* src, int cchSrc, uint16_t* dst, int cchDst);
+int UziUtf16toUtf8(const uint16_t* src, int cchSrc, uint8_t* dst, int cchDst);
+
+#ifdef _WIN32
+#define uzi_snprintf		sprintf_s
+#else
+#define uzi_snprintf		snprintf
+#endif
+
+/**
+ * File API
+ */
+
+#define UZI_MAX_PATH		1024
+
+#define UZI_PATH_SLASH_CHR		'/'
+#define UZI_PATH_SLASH_STR		"/"
+
+#define UZI_PATH_BACKSLASH_CHR		'\\'
+#define UZI_PATH_BACKSLASH_STR		"\\"
+
+#ifdef _WIN32
+#define UZI_PATH_SEPARATOR_CHR		UZI_PATH_BACKSLASH_CHR
+#define UZI_PATH_SEPARATOR_STR		UZI_PATH_BACKSLASH_STR
+#else
+#define UZI_PATH_SEPARATOR_CHR		UZI_PATH_SLASH_CHR
+#define UZI_PATH_SEPARATOR_STR		UZI_PATH_SLASH_STR
+#endif
+
+int UziFile_Seek(FILE* fp, uint64_t offset, int origin);
+uint64_t UziFile_Tell(FILE* fp);
+uint64_t UziFile_Size(const char* filename);
+const char* UziFile_Base(const char* filename);
+char* UziFile_Dir(const char* filename);
+const char* UziFile_Extension(const char* filename, bool dot);
+FILE* UziFile_Open(const char* path, const char* mode);
+uint8_t* UziFile_Load(const char* filename, size_t* size, uint32_t padding);
+bool UziFile_Save(const char* filename, uint8_t* data, size_t size, int mode);
+bool UziFile_Move(const char* src, const char* dst, bool replace);
+bool UziFile_Exists(const char* filename);
+bool UziFile_Delete(const char* filename);
+int UziMkPath(const char* path, int mode);
+int UziMkDir(const char* path, int mode);
+int UziRmDir(const char* path);
+int UziChMod(const char* filename, int mode);
+
 #ifdef __cplusplus
 }
 #endif

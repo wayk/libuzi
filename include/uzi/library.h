@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_LIBRARY_H
-#define WINPR_LIBRARY_H
+#ifndef UZI_LIBRARY_H
+#define UZI_LIBRARY_H
 
 #include <uzi/winpr.h>
 #include <uzi/wtypes.h>
@@ -36,15 +36,15 @@ typedef HANDLE DLL_DIRECTORY_COOKIE;
 extern "C" {
 #endif
 
-WINPR_API DLL_DIRECTORY_COOKIE AddDllDirectory(PCWSTR NewDirectory);
-WINPR_API BOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie);
-WINPR_API BOOL SetDefaultDllDirectories(DWORD DirectoryFlags);
+UZI_API DLL_DIRECTORY_COOKIE AddDllDirectory(PCWSTR NewDirectory);
+UZI_API BOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie);
+UZI_API BOOL SetDefaultDllDirectories(DWORD DirectoryFlags);
 
-WINPR_API HMODULE LoadLibraryA(LPCSTR lpLibFileName);
-WINPR_API HMODULE LoadLibraryW(LPCWSTR lpLibFileName);
+UZI_API HMODULE LoadLibraryA(LPCSTR lpLibFileName);
+UZI_API HMODULE LoadLibraryW(LPCWSTR lpLibFileName);
 
-WINPR_API HMODULE LoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
-WINPR_API HMODULE LoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
+UZI_API HMODULE LoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
+UZI_API HMODULE LoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
 
 #ifdef __cplusplus
 }
@@ -66,15 +66,15 @@ WINPR_API HMODULE LoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFl
 extern "C" {
 #endif
 
-WINPR_API HMODULE GetModuleHandleA(LPCSTR lpModuleName);
-WINPR_API HMODULE GetModuleHandleW(LPCWSTR lpModuleName);
+UZI_API HMODULE GetModuleHandleA(LPCSTR lpModuleName);
+UZI_API HMODULE GetModuleHandleW(LPCWSTR lpModuleName);
 
-WINPR_API DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize);
-WINPR_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
+UZI_API DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize);
+UZI_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
 
-WINPR_API FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
+UZI_API FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
 
-WINPR_API BOOL FreeLibrary(HMODULE hLibModule);
+UZI_API BOOL FreeLibrary(HMODULE hLibModule);
 
 #ifdef __cplusplus
 }
@@ -90,5 +90,5 @@ WINPR_API BOOL FreeLibrary(HMODULE hLibModule);
 
 #endif
 
-#endif /* WINPR_LIBRARY_H */
+#endif /* UZI_LIBRARY_H */
 

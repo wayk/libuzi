@@ -28,7 +28,7 @@
 
 #include <uzi/crt.h>
 
-#ifdef WINPR_SYNCHRONIZATION_BARRIER
+#ifdef UZI_SYNCHRONIZATION_BARRIER
 
 #include <assert.h>
 #include <uzi/sysinfo.h>

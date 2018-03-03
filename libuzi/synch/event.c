@@ -285,7 +285,7 @@ HANDLE CreateWaitObjectEvent(LPSECURITY_ATTRIBUTES lpEventAttributes,
 {
 #ifndef _WIN32
 	return CreateFileDescriptorEventW(lpEventAttributes, bManualReset,
-	                                  bInitialState, (int)(ULONG_PTR) pObject, WINPR_FD_READ);
+	                                  bInitialState, (int)(ULONG_PTR) pObject, UZI_FD_READ);
 #else
 	HANDLE hEvent = NULL;
 	DuplicateHandle(GetCurrentProcess(), pObject, GetCurrentProcess(), &hEvent, 0, FALSE,
@@ -368,3 +368,4 @@ void* GetEventWaitObject(HANDLE hEvent)
 	return hEvent;
 #endif
 }
+

@@ -6,18 +6,18 @@
 
 typedef struct _PROGRAM_ITEM
 {
-	WINPR_SLIST_ENTRY ItemEntry;
+	UZI_SLIST_ENTRY ItemEntry;
 	ULONG Signature;
 } PROGRAM_ITEM, *PPROGRAM_ITEM;
 
 int TestInterlockedSList(int argc, char* argv[])
 {
 	ULONG Count;
-	WINPR_PSLIST_ENTRY pFirstEntry;
-	WINPR_PSLIST_HEADER pListHead;
+	UZI_PSLIST_ENTRY pFirstEntry;
+	UZI_PSLIST_HEADER pListHead;
 
 	/* Initialize the list header to a MEMORY_ALLOCATION_ALIGNMENT boundary. */
-	pListHead = (WINPR_PSLIST_HEADER) _aligned_malloc(sizeof(WINPR_SLIST_HEADER), MEMORY_ALLOCATION_ALIGNMENT);
+	pListHead = (UZI_PSLIST_HEADER) _aligned_malloc(sizeof(UZI_SLIST_HEADER), MEMORY_ALLOCATION_ALIGNMENT);
 
 	if (!pListHead)
 	{
@@ -46,7 +46,7 @@ int TestInterlockedSList(int argc, char* argv[])
 	for (Count = 10; Count >= 1; Count -= 1)
 	{
 		PPROGRAM_ITEM pProgramItem;
-		WINPR_PSLIST_ENTRY pListEntry = InterlockedPopEntrySList(pListHead);
+		UZI_PSLIST_ENTRY pListEntry = InterlockedPopEntrySList(pListHead);
 
 		if (!pListEntry)
 		{

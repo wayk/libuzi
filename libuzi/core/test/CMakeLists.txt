@@ -1,12 +1,12 @@
 
-set(MODULE_NAME "TestUziCrt")
-set(MODULE_PREFIX "TEST_UZI_CRT")
+set(MODULE_NAME "TestUziCore")
+set(MODULE_PREFIX "TEST_UZI_CORE")
 
 set(${MODULE_PREFIX}_DRIVER ${MODULE_NAME}.c)
 
 set(${MODULE_PREFIX}_TESTS
-	TestAlignment.c
-	TestUnicode.c)
+	TestAlignment.c)
+	#TestUnicode.c)
 
 create_test_sourcelist(${MODULE_PREFIX}_SRCS
 	${${MODULE_PREFIX}_DRIVER}

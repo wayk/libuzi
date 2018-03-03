@@ -1,5 +1,5 @@
 # WinPR: Windows Portable Runtime
-# libwinpr-crt cmake build script
+# libwinpr-error cmake build script
 #
 # Copyright 2012 Marc-Andre Moreau <marcandre.moreau@gmail.com>
 #
@@ -15,17 +15,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set (CRT_FILES alignment.c
-	conversion.c
-	buffer.c
-	memory.c
-	unicode.c
-	string.c
-	utf.c
-	utf.h)
-
-uzi_module_add(${CRT_FILES})
-
-if(BUILD_TESTING)
-	add_subdirectory(test)
-endif()
+uzi_module_add(file.c)

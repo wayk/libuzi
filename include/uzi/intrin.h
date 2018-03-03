@@ -19,8 +19,10 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_INTRIN_H
-#define WINPR_INTRIN_H
+#ifndef UZI_INTRIN_H
+#define UZI_INTRIN_H
+
+#include <uzi/uzi.h>
 
 #ifndef _WIN32
 
@@ -33,17 +35,17 @@
 
 #if (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 2))
 
-static INLINE UINT32 __lzcnt(UINT32 _val32) {
-	return ((UINT32) __builtin_clz(_val32));
+static inline uint32_t __lzcnt(uint32_t _val32) {
+	return ((uint32_t) __builtin_clz(_val32));
 }
 
-static INLINE UINT16 __lzcnt16(UINT16 _val16) {
-	return ((UINT16) (__builtin_clz((UINT32) _val16) - 16));
+static inline uint16_t __lzcnt16(uint16_t _val16) {
+	return ((uint16_t) (__builtin_clz((uint32_t) _val16) - 16));
 }
 
 #else /* (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 2) */
 
-static INLINE UINT32 __lzcnt(UINT32 x)
+static inline uint32_t __lzcnt(uint32_t x)
 {
 	unsigned y;
 	int n = 32;
@@ -55,12 +57,12 @@ static INLINE UINT32 __lzcnt(UINT32 x)
 	return n - x;
 }
 
-static INLINE UINT16 __lzcnt16(UINT16 x)
+static inline uint16_t __lzcnt16(uint16_t x)
 {
-	return ((UINT16) __lzcnt((UINT32) x));
+	return ((uint16_t) __lzcnt((uint16_t) x));
 }
 
 #endif /* (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 2) */
 
 #endif /* _WIN32 */
-#endif /* WINPR_INTRIN_H */
+#endif /* UZI_INTRIN_H */

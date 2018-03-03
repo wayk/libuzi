@@ -33,7 +33,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-VOID InitializeSListHead(WINPR_PSLIST_HEADER ListHead)
+VOID InitializeSListHead(UZI_PSLIST_HEADER ListHead)
 {
 #ifdef _WIN64
 	ListHead->s.Alignment = 0;
@@ -44,10 +44,10 @@ VOID InitializeSListHead(WINPR_PSLIST_HEADER ListHead)
 #endif
 }
 
-WINPR_PSLIST_ENTRY InterlockedPushEntrySList(WINPR_PSLIST_HEADER ListHead, WINPR_PSLIST_ENTRY ListEntry)
+UZI_PSLIST_ENTRY InterlockedPushEntrySList(UZI_PSLIST_HEADER ListHead, UZI_PSLIST_ENTRY ListEntry)
 {
-	WINPR_SLIST_HEADER old;
-	WINPR_SLIST_HEADER newHeader;
+	UZI_SLIST_HEADER old;
+	UZI_SLIST_HEADER newHeader;
 
 #ifdef _WIN64
 	newHeader.HeaderX64.NextEntry = (((ULONG_PTR) ListEntry) >> 4);
@@ -85,7 +85,7 @@ WINPR_PSLIST_ENTRY InterlockedPushEntrySList(WINPR_PSLIST_HEADER ListHead, WINPR
 #endif
 }
 
-WINPR_PSLIST_ENTRY InterlockedPushListSListEx(WINPR_PSLIST_HEADER ListHead, WINPR_PSLIST_ENTRY List, WINPR_PSLIST_ENTRY ListEnd, ULONG Count)
+UZI_PSLIST_ENTRY InterlockedPushListSListEx(UZI_PSLIST_HEADER ListHead, UZI_PSLIST_ENTRY List, UZI_PSLIST_ENTRY ListEnd, ULONG Count)
 {
 #ifdef _WIN64
 
@@ -95,11 +95,11 @@ WINPR_PSLIST_ENTRY InterlockedPushListSListEx(WINPR_PSLIST_HEADER ListHead, WINP
 	return NULL;
 }
 
-WINPR_PSLIST_ENTRY InterlockedPopEntrySList(WINPR_PSLIST_HEADER ListHead)
+UZI_PSLIST_ENTRY InterlockedPopEntrySList(UZI_PSLIST_HEADER ListHead)
 {
-	WINPR_SLIST_HEADER old;
-	WINPR_SLIST_HEADER newHeader;
-	WINPR_PSLIST_ENTRY entry;
+	UZI_SLIST_HEADER old;
+	UZI_SLIST_HEADER newHeader;
+	UZI_PSLIST_ENTRY entry;
 
 #ifdef _WIN64
 	while (1)
@@ -140,10 +140,10 @@ WINPR_PSLIST_ENTRY InterlockedPopEntrySList(WINPR_PSLIST_HEADER ListHead)
 	return entry;
 }
 
-WINPR_PSLIST_ENTRY InterlockedFlushSList(WINPR_PSLIST_HEADER ListHead)
+UZI_PSLIST_ENTRY InterlockedFlushSList(UZI_PSLIST_HEADER ListHead)
 {
-	WINPR_SLIST_HEADER old;
-	WINPR_SLIST_HEADER newHeader;
+	UZI_SLIST_HEADER old;
+	UZI_SLIST_HEADER newHeader;
 
 	if (!QueryDepthSList(ListHead))
 		return NULL;
@@ -180,7 +180,7 @@ WINPR_PSLIST_ENTRY InterlockedFlushSList(WINPR_PSLIST_HEADER ListHead)
 #endif
 }
 
-USHORT QueryDepthSList(WINPR_PSLIST_HEADER ListHead)
+USHORT QueryDepthSList(UZI_PSLIST_HEADER ListHead)
 {
 #ifdef _WIN64
 	return ListHead->HeaderX64.Depth;
@@ -245,11 +245,11 @@ PVOID InterlockedCompareExchangePointer(PVOID volatile *Destination, PVOID Excha
 
 #endif /* _WIN32 */
 
-#if defined(_WIN32) && !defined(WINPR_INTERLOCKED_COMPARE_EXCHANGE64)
+#if defined(_WIN32) && !defined(UZI_INTERLOCKED_COMPARE_EXCHANGE64)
 
 /* InterlockedCompareExchange64 already defined */
 
-#elif defined(_WIN32) && defined(WINPR_INTERLOCKED_COMPARE_EXCHANGE64)
+#elif defined(_WIN32) && defined(UZI_INTERLOCKED_COMPARE_EXCHANGE64)
 
 static volatile HANDLE mutex = NULL;
 
@@ -332,20 +332,20 @@ LONGLONG InterlockedCompareExchange64(LONGLONG volatile *Destination, LONGLONG E
  * http://msdn.microsoft.com/en-us/library/windows/hardware/ff563802/
  */
 
-VOID InitializeListHead(WINPR_PLIST_ENTRY ListHead)
+VOID InitializeListHead(UZI_PLIST_ENTRY ListHead)
 {
 	ListHead->Flink = ListHead->Blink = ListHead;
 }
 
-BOOL IsListEmpty(const WINPR_LIST_ENTRY* ListHead)
+BOOL IsListEmpty(const UZI_LIST_ENTRY* ListHead)
 {
 	return (BOOL) (ListHead->Flink == ListHead);
 }
 
-BOOL RemoveEntryList(WINPR_PLIST_ENTRY Entry)
+BOOL RemoveEntryList(UZI_PLIST_ENTRY Entry)
 {
-	WINPR_PLIST_ENTRY OldFlink;
-	WINPR_PLIST_ENTRY OldBlink;
+	UZI_PLIST_ENTRY OldFlink;
+	UZI_PLIST_ENTRY OldBlink;
 
 	OldFlink = Entry->Flink;
 	OldBlink = Entry->Blink;
@@ -355,9 +355,9 @@ BOOL RemoveEntryList(WINPR_PLIST_ENTRY Entry)
 	return (BOOL) (OldFlink == OldBlink);
 }
 
-VOID InsertHeadList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
+VOID InsertHeadList(UZI_PLIST_ENTRY ListHead, UZI_PLIST_ENTRY Entry)
 {
-	WINPR_PLIST_ENTRY OldFlink;
+	UZI_PLIST_ENTRY OldFlink;
 
 	OldFlink = ListHead->Flink;
 	Entry->Flink = OldFlink;
@@ -366,10 +366,10 @@ VOID InsertHeadList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
 	ListHead->Flink = Entry;
 }
 
-WINPR_PLIST_ENTRY RemoveHeadList(WINPR_PLIST_ENTRY ListHead)
+UZI_PLIST_ENTRY RemoveHeadList(UZI_PLIST_ENTRY ListHead)
 {
-	WINPR_PLIST_ENTRY Flink;
-	WINPR_PLIST_ENTRY Entry;
+	UZI_PLIST_ENTRY Flink;
+	UZI_PLIST_ENTRY Entry;
 
 	Entry = ListHead->Flink;
 	Flink = Entry->Flink;
@@ -379,9 +379,9 @@ WINPR_PLIST_ENTRY RemoveHeadList(WINPR_PLIST_ENTRY ListHead)
 	return Entry;
 }
 
-VOID InsertTailList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
+VOID InsertTailList(UZI_PLIST_ENTRY ListHead, UZI_PLIST_ENTRY Entry)
 {
-	WINPR_PLIST_ENTRY OldBlink;
+	UZI_PLIST_ENTRY OldBlink;
 
 	OldBlink = ListHead->Blink;
 	Entry->Flink = ListHead;
@@ -390,10 +390,10 @@ VOID InsertTailList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY Entry)
 	ListHead->Blink = Entry;
 }
 
-WINPR_PLIST_ENTRY RemoveTailList(WINPR_PLIST_ENTRY ListHead)
+UZI_PLIST_ENTRY RemoveTailList(UZI_PLIST_ENTRY ListHead)
 {
-	WINPR_PLIST_ENTRY Blink;
-	WINPR_PLIST_ENTRY Entry;
+	UZI_PLIST_ENTRY Blink;
+	UZI_PLIST_ENTRY Entry;
 
 	Entry = ListHead->Blink;
 	Blink = Entry->Blink;
@@ -403,9 +403,9 @@ WINPR_PLIST_ENTRY RemoveTailList(WINPR_PLIST_ENTRY ListHead)
 	return Entry;
 }
 
-VOID AppendTailList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY ListToAppend)
+VOID AppendTailList(UZI_PLIST_ENTRY ListHead, UZI_PLIST_ENTRY ListToAppend)
 {
-	WINPR_PLIST_ENTRY ListEnd = ListHead->Blink;
+	UZI_PLIST_ENTRY ListEnd = ListHead->Blink;
 
 	ListHead->Blink->Flink = ListToAppend;
 	ListHead->Blink = ListToAppend->Blink;
@@ -413,15 +413,15 @@ VOID AppendTailList(WINPR_PLIST_ENTRY ListHead, WINPR_PLIST_ENTRY ListToAppend)
 	ListToAppend->Blink = ListEnd;
 }
 
-VOID PushEntryList(WINPR_PSINGLE_LIST_ENTRY ListHead, WINPR_PSINGLE_LIST_ENTRY Entry)
+VOID PushEntryList(UZI_PSINGLE_LIST_ENTRY ListHead, UZI_PSINGLE_LIST_ENTRY Entry)
 {
 	Entry->Next = ListHead->Next;
 	ListHead->Next = Entry;
 }
 
-WINPR_PSINGLE_LIST_ENTRY PopEntryList(WINPR_PSINGLE_LIST_ENTRY ListHead)
+UZI_PSINGLE_LIST_ENTRY PopEntryList(UZI_PSINGLE_LIST_ENTRY ListHead)
 {
-	WINPR_PSINGLE_LIST_ENTRY FirstEntry;
+	UZI_PSINGLE_LIST_ENTRY FirstEntry;
 
 	FirstEntry = ListHead->Next;
 

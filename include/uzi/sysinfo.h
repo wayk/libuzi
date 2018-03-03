@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_SYSINFO_H
-#define WINPR_SYSINFO_H
+#ifndef UZI_SYSINFO_H
+#define UZI_SYSINFO_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -96,8 +96,8 @@ typedef struct _SYSTEM_INFO
 	WORD wProcessorRevision;
 } SYSTEM_INFO, *LPSYSTEM_INFO;
 
-WINPR_API void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
-WINPR_API void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo);
+UZI_API void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
+UZI_API void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 
 #define VER_PLATFORM_WIN32_NT			0x00000002
 
@@ -119,16 +119,16 @@ WINPR_API void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 #define VER_NT_SERVER				0x0000003
 #define VER_NT_WORKSTATION			0x0000001
 
-WINPR_API void GetSystemTime(LPSYSTEMTIME lpSystemTime);
-WINPR_API BOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime);
-WINPR_API VOID GetLocalTime(LPSYSTEMTIME lpSystemTime);
-WINPR_API BOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime);
+UZI_API void GetSystemTime(LPSYSTEMTIME lpSystemTime);
+UZI_API BOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime);
+UZI_API VOID GetLocalTime(LPSYSTEMTIME lpSystemTime);
+UZI_API BOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime);
 
-WINPR_API VOID GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime);
-WINPR_API BOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement,
+UZI_API VOID GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime);
+UZI_API BOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement,
                                        PBOOL lpTimeAdjustmentDisabled);
 
-WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
+UZI_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
 
 #define PF_FLOATING_POINT_PRECISION_ERRATA		0
 #define PF_FLOATING_POINT_EMULATED			1
@@ -195,20 +195,20 @@ WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
 
 #if !defined(_WIN32) || defined(_UWP)
 
-WINPR_API DWORD GetTickCount(void);
+UZI_API DWORD GetTickCount(void);
 
 #endif
 
 #if (!defined(_WIN32)) || (defined(_WIN32) && (_WIN32_WINNT < 0x0600))
 
-WINPR_API ULONGLONG winpr_GetTickCount64(void);
+UZI_API ULONGLONG winpr_GetTickCount64(void);
 #define GetTickCount64 winpr_GetTickCount64
 
 #endif
 
-WINPR_API DWORD GetTickCountPrecise(void);
+UZI_API DWORD GetTickCountPrecise(void);
 
-WINPR_API BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature);
+UZI_API BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature);
 
 /* extended flags */
 #define PF_EX_LZCNT			1
@@ -238,4 +238,4 @@ WINPR_API BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature);
 }
 #endif
 
-#endif /* WINPR_SYSINFO_H */
+#endif /* UZI_SYSINFO_H */

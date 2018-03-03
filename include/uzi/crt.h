@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_CRT_H
-#define WINPR_CRT_H
+#ifndef UZI_CRT_H
+#define UZI_CRT_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -120,7 +120,7 @@ static INLINE UINT16 _byteswap_ushort(UINT16 _val)
 extern "C" {
 #endif
 
-WINPR_API PVOID SecureZeroMemory(PVOID ptr, SIZE_T cnt);
+UZI_API PVOID SecureZeroMemory(PVOID ptr, SIZE_T cnt);
 
 #ifdef __cplusplus
 }
@@ -137,28 +137,28 @@ typedef int errno_t;
 extern "C" {
 #endif
 
-WINPR_API void* _aligned_malloc(size_t size, size_t alignment);
-WINPR_API void* _aligned_realloc(void* memblock, size_t size, size_t alignment);
-WINPR_API void* _aligned_recalloc(void* memblock, size_t num, size_t size, size_t alignment);
+UZI_API void* _aligned_malloc(size_t size, size_t alignment);
+UZI_API void* _aligned_realloc(void* memblock, size_t size, size_t alignment);
+UZI_API void* _aligned_recalloc(void* memblock, size_t num, size_t size, size_t alignment);
 
-WINPR_API void* _aligned_offset_malloc(size_t size, size_t alignment, size_t offset);
-WINPR_API void* _aligned_offset_realloc(void* memblock, size_t size, size_t alignment,
+UZI_API void* _aligned_offset_malloc(size_t size, size_t alignment, size_t offset);
+UZI_API void* _aligned_offset_realloc(void* memblock, size_t size, size_t alignment,
                                         size_t offset);
-WINPR_API void* _aligned_offset_recalloc(void* memblock, size_t num, size_t size, size_t alignment,
+UZI_API void* _aligned_offset_recalloc(void* memblock, size_t num, size_t size, size_t alignment,
         size_t offset);
 
-WINPR_API size_t _aligned_msize(void* memblock, size_t alignment, size_t offset);
+UZI_API size_t _aligned_msize(void* memblock, size_t alignment, size_t offset);
 
-WINPR_API void _aligned_free(void* memblock);
+UZI_API void _aligned_free(void* memblock);
 
 /* Data Conversion */
 
-WINPR_API errno_t _itoa_s(int value, char* buffer, size_t sizeInCharacters, int radix);
+UZI_API errno_t _itoa_s(int value, char* buffer, size_t sizeInCharacters, int radix);
 
 /* Buffer Manipulation */
 
-WINPR_API errno_t memmove_s(void* dest, size_t numberOfElements, const void* src, size_t count);
-WINPR_API errno_t wmemmove_s(WCHAR* dest, size_t numberOfElements, const WCHAR* src, size_t count);
+UZI_API errno_t memmove_s(void* dest, size_t numberOfElements, const void* src, size_t count);
+UZI_API errno_t wmemmove_s(WCHAR* dest, size_t numberOfElements, const WCHAR* src, size_t count);
 
 #ifdef __cplusplus
 }
@@ -167,4 +167,4 @@ WINPR_API errno_t wmemmove_s(WCHAR* dest, size_t numberOfElements, const WCHAR* 
 
 #endif
 
-#endif /* WINPR_CRT_H */
+#endif /* UZI_CRT_H */

@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_SPEC_H
-#define WINPR_SPEC_H
+#ifndef UZI_SPEC_H
+#define UZI_SPEC_H
 
 #include <uzi/platform.h>
 
@@ -177,5 +177,5 @@ char (*__countof_helper(_CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
   #endif
 #endif
 
-#endif /* WINPR_SPEC_H */
+#endif /* UZI_SPEC_H */
 

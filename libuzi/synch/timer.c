@@ -231,7 +231,7 @@ HANDLE CreateWaitableTimerA(LPSECURITY_ATTRIBUTES lpTimerAttributes, BOOL bManua
 
 	if (timer)
 	{
-		WINPR_HANDLE_SET_TYPE_AND_MODE(timer, HANDLE_TYPE_TIMER, WINPR_FD_READ);
+		WINPR_HANDLE_SET_TYPE_AND_MODE(timer, HANDLE_TYPE_TIMER, UZI_FD_READ);
 		handle = (HANDLE) timer;
 		timer->fd = -1;
 		timer->lPeriod = 0;
@@ -605,7 +605,7 @@ HANDLE CreateTimerQueue(void)
 
 	if (timerQueue)
 	{
-		WINPR_HANDLE_SET_TYPE_AND_MODE(timerQueue, HANDLE_TYPE_TIMER_QUEUE, WINPR_FD_READ);
+		WINPR_HANDLE_SET_TYPE_AND_MODE(timerQueue, HANDLE_TYPE_TIMER_QUEUE, UZI_FD_READ);
 		handle = (HANDLE) timerQueue;
 		timerQueue->activeHead = NULL;
 		timerQueue->inactiveHead = NULL;
@@ -701,7 +701,7 @@ BOOL CreateTimerQueueTimer(PHANDLE phNewTimer, HANDLE TimerQueue,
 	if (!timer)
 		return FALSE;
 
-	WINPR_HANDLE_SET_TYPE_AND_MODE(timer, HANDLE_TYPE_TIMER_QUEUE_TIMER, WINPR_FD_READ);
+	WINPR_HANDLE_SET_TYPE_AND_MODE(timer, HANDLE_TYPE_TIMER_QUEUE_TIMER, UZI_FD_READ);
 	*((UINT_PTR*) phNewTimer) = (UINT_PTR)(HANDLE) timer;
 	timespec_copy(&(timer->StartTime), &CurrentTime);
 	timespec_add_ms(&(timer->StartTime), DueTime);

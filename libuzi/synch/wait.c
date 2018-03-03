@@ -171,9 +171,9 @@ STATIC_NEEDED int pthread_mutex_timedlock(pthread_mutex_t *mutex, CONST_NEEDED s
 static DWORD handle_mode_to_pollevent(ULONG mode)
 {
 	DWORD event = 0;
-	if (mode & WINPR_FD_READ)
+	if (mode & UZI_FD_READ)
 		event |= POLLIN;
-	if (mode & WINPR_FD_WRITE)
+	if (mode & UZI_FD_WRITE)
 		event |= POLLOUT;
 
 	return event;
@@ -280,7 +280,6 @@ DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 			SetLastError(ERROR_INVALID_HANDLE);
 			return WAIT_FAILED;
 		}
-
 
 		status = waitOnFd(fd, Object->Mode, dwMilliseconds);
 

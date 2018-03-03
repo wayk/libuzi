@@ -21,8 +21,6 @@
 #include "config.h"
 #endif
 
-#include <uzi/endian.h>
-
 #include <errno.h>
 #include <stdio.h>
 #include <wctype.h>
@@ -54,17 +52,13 @@ int _strnicmp(const char* string1, const char* string2, size_t count)
 
 int _wcscmp(const WCHAR* string1, const WCHAR* string2)
 {
-	WCHAR value1, value2;
-
 	while (*string1 && (*string1 == *string2))
 	{
 		string1++;
 		string2++;
 	}
 
-	Data_Read_UINT16(string1, value1);
-	Data_Read_UINT16(string2, value2);
-	return value1 - value2;
+	return *string1 - *string2;
 }
 
 /* _wcslen -> wcslen */
@@ -228,149 +222,24 @@ BOOL IsCharLowerA(CHAR ch)
 		return 0;
 }
 
-int lstrlenA(LPCSTR lpString)
-{
-	return (int) strlen(lpString);
-}
-
-int lstrcmpA(LPCSTR lpString1, LPCSTR lpString2)
-{
-	return strcmp(lpString1, lpString2);
-}
-
 #endif
 
-int ConvertLineEndingToLF(char* str, int size)
+/* Data Conversion: http://msdn.microsoft.com/en-us/library/0heszx3w/ */
+
+#ifndef _WIN32
+
+errno_t _itoa_s(int value, char* buffer, size_t sizeInCharacters, int radix)
 {
-	int status;
-	char* end;
-	char* pInput;
-	char* pOutput;
+	int length;
 
-	end = &str[size];
-	pInput = pOutput = str;
+	length = sprintf_s(NULL, 0, "%d", value);
 
-	while (pInput < end)
-	{
-		if ((pInput[0] == '\r') && (pInput[1] == '\n'))
-		{
-			*pOutput++ = '\n';
-			pInput += 2;
-		}
-		else
-		{
-			*pOutput++ = *pInput++;
-		}
-	}
-
-	status = (int) (pOutput - str);
-
-	return status;
-}
-
-char* ConvertLineEndingToCRLF(const char* str, int* size)
-{
-	int count;
-	char* newStr;
-	char* pOutput;
-	const char* end;
-	const char* pInput;
-
-	end = &str[*size];
-
-	count = 0;
-	pInput = str;
-
-	while (pInput < end)
-	{
-		if (*pInput == '\n')
-			count++;
-
-		pInput++;
-	}
-
-	newStr = (char*) malloc(*size + (count * 2) + 1);
-
-	if (!newStr)
-		return NULL;
-
-	pInput = str;
-	pOutput = newStr;
-
-	while (pInput < end)
-	{
-		if ((*pInput == '\n') && ((pInput > str) && (pInput[-1] != '\r')))
-		{
-			*pOutput++ = '\r';
-			*pOutput++ = '\n';
-		}
-		else
-		{
-			*pOutput++ = *pInput;
-		}
-
-		pInput++;
-	}
-
-	*size = (int) (pOutput - newStr);
-
-	return newStr;
-}
-
-char* StrSep(char** stringp, const char* delim)
-{
-	char* start = *stringp;
-	char* p;
-
-	p = (start != NULL) ? strpbrk(start, delim) : NULL;
-
-	if (!p)
-		*stringp = NULL;
-	else
-	{
-		*p = '\0';
-		*stringp = p + 1;
-	}
-
-	return start;
-}
-
-INT64 GetLine(char** lineptr, size_t* size, FILE* stream)
-{
-#if defined(_WIN32)
-	char c;
-	char *n;
-	size_t step = 32;
-	size_t used = 0;
-
-	if (!lineptr || !size)
-	{
-		errno = EINVAL;
+	if (sizeInCharacters < length)
 		return -1;
-	}
 
-	do
-	{
-		if (used + 2 >= *size)
-		{
-			*size += step;
-			n = realloc(*lineptr, *size);
-			if (!n)
-			{
-				return -1;
-			}
-			*lineptr = n;
-		}
-        c = fgetc(stream);
-        if (c != EOF)
-            (*lineptr)[used++] = c;
-    } while((c != '\n') && (c != '\r') && (c != EOF));
-    (*lineptr)[used] = '\0';
+	sprintf_s(buffer, length + 1, "%d", value);
 
-	return used;
-#elif !defined(ANDROID) && !defined(IOS)
-	return getline(lineptr, size, stream);
-#else
-	return -1;
-#endif
+	return 0;
 }
+
+#endif

@@ -16,50 +16,50 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_H
-#define WINPR_H
+#ifndef UZI_H
+#define UZI_H
 
 #include <uzi/platform.h>
 
-#ifdef WINPR_DLL
+#ifdef UZI_DLL
 #if defined _WIN32 || defined __CYGWIN__
-#ifdef WINPR_EXPORTS
+#ifdef UZI_EXPORTS
 #ifdef __GNUC__
-#define WINPR_API __attribute__((dllexport))
+#define UZI_API __attribute__((dllexport))
 #else
-#define WINPR_API __declspec(dllexport)
+#define UZI_API __declspec(dllexport)
 #endif
 #else
 #ifdef __GNUC__
-#define WINPR_API __attribute__((dllimport))
+#define UZI_API __attribute__((dllimport))
 #else
-#define WINPR_API __declspec(dllimport)
+#define UZI_API __declspec(dllimport)
 #endif
 #endif
 #else
 #if __GNUC__ >= 4
-#define WINPR_API   __attribute__ ((visibility("default")))
+#define UZI_API   __attribute__ ((visibility("default")))
 #else
-#define WINPR_API
+#define UZI_API
 #endif
 #endif
-#else /* WINPR_DLL */
-#define WINPR_API	
+#else /* UZI_DLL */
+#define UZI_API
 #endif
 
 /* Thread local storage keyword define */
 #if defined _WIN32 || defined __CYGWIN__
 #ifdef __GNUC__
-#define WINPR_TLS __thread
+#define UZI_TLS __thread
 #else
-#define WINPR_TLS __declspec(thread)
+#define UZI_TLS __declspec(thread)
 #endif
 #elif !defined(__IOS__)
-#define WINPR_TLS __thread
+#define UZI_TLS __thread
 #else
 //#warning "Target iOS does not support Thread Local Storage!"
 //#warning "Multi Instance support is disabled!"
-#define WINPR_TLS
+#define UZI_TLS
 #endif
 
 
@@ -69,10 +69,10 @@
 #define INLINE	inline
 #endif
 
-WINPR_API void winpr_get_version(int* major, int* minor, int* revision);
-WINPR_API const char* winpr_get_version_string(void);
-WINPR_API const char* winpr_get_build_date(void);
-WINPR_API const char* winpr_get_build_revision(void);
-WINPR_API const char* winpr_get_build_config(void);
+UZI_API void winpr_get_version(int* major, int* minor, int* revision);
+UZI_API const char* winpr_get_version_string(void);
+UZI_API const char* winpr_get_build_date(void);
+UZI_API const char* winpr_get_build_revision(void);
+UZI_API const char* winpr_get_build_config(void);
 
-#endif /* WINPR_H */
+#endif /* UZI_H */

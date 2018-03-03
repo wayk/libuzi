@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_WINSOCK_H
-#define WINPR_WINSOCK_H
+#ifndef UZI_WINSOCK_H
+#define UZI_WINSOCK_H
 
 #include <uzi/winpr.h>
 #include <uzi/wtypes.h>
@@ -65,8 +65,8 @@
 
 #if (_WIN32_WINNT < 0x0600)
 
-WINPR_API PCSTR winpr_inet_ntop(INT Family, PVOID pAddr, PSTR pStringBuf, size_t StringBufSize);
-WINPR_API INT winpr_inet_pton(INT Family, PCSTR pszAddrString, PVOID pAddrBuf);
+UZI_API PCSTR winpr_inet_ntop(INT Family, PVOID pAddr, PSTR pStringBuf, size_t StringBufSize);
+UZI_API INT winpr_inet_pton(INT Family, PCSTR pszAddrString, PVOID pAddrBuf);
 
 #define inet_ntop winpr_inet_ntop
 #define inet_pton winpr_inet_pton
@@ -283,49 +283,49 @@ typedef UINT32 GROUP;
 extern "C" {
 #endif
 
-WINPR_API int WSAStartup(WORD wVersionRequired, LPWSADATA lpWSAData);
-WINPR_API int WSACleanup(void);
+UZI_API int WSAStartup(WORD wVersionRequired, LPWSADATA lpWSAData);
+UZI_API int WSACleanup(void);
 
-WINPR_API void WSASetLastError(int iError);
-WINPR_API int WSAGetLastError(void);
+UZI_API void WSASetLastError(int iError);
+UZI_API int WSAGetLastError(void);
 
-WINPR_API HANDLE WSACreateEvent(void);
-WINPR_API BOOL WSASetEvent(HANDLE hEvent);
-WINPR_API BOOL WSAResetEvent(HANDLE hEvent);
-WINPR_API BOOL WSACloseEvent(HANDLE hEvent);
+UZI_API HANDLE WSACreateEvent(void);
+UZI_API BOOL WSASetEvent(HANDLE hEvent);
+UZI_API BOOL WSAResetEvent(HANDLE hEvent);
+UZI_API BOOL WSACloseEvent(HANDLE hEvent);
 
-WINPR_API int WSAEventSelect(SOCKET s, WSAEVENT hEventObject, LONG lNetworkEvents);
+UZI_API int WSAEventSelect(SOCKET s, WSAEVENT hEventObject, LONG lNetworkEvents);
 
-WINPR_API SOCKET _accept(SOCKET s, struct sockaddr* addr, int* addrlen);
-WINPR_API int _bind(SOCKET s, const struct sockaddr* addr, int namelen);
-WINPR_API int _closesocket(SOCKET s);
-WINPR_API int _connect(SOCKET s, const struct sockaddr* name, int namelen);
-WINPR_API int _ioctlsocket(SOCKET s, long cmd, u_long* argp);
-WINPR_API int _getpeername(SOCKET s, struct sockaddr* name, int* namelen);
-WINPR_API int _getsockname(SOCKET s, struct sockaddr* name, int* namelen);
-WINPR_API int _getsockopt(SOCKET s, int level, int optname, char* optval, int* optlen);
-WINPR_API u_long _htonl(u_long hostlong);
-WINPR_API u_short _htons(u_short hostshort);
-WINPR_API unsigned long _inet_addr(const char* cp);
-WINPR_API char* _inet_ntoa(struct in_addr in);
-WINPR_API int _listen(SOCKET s, int backlog);
-WINPR_API u_long _ntohl(u_long netlong);
-WINPR_API u_short _ntohs(u_short netshort);
-WINPR_API int _recv(SOCKET s, char* buf, int len, int flags);
-WINPR_API int _recvfrom(SOCKET s, char* buf, int len, int flags, struct sockaddr* from, int* fromlen);
-WINPR_API int _select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* exceptfds, const struct timeval* timeout);
-WINPR_API int _send(SOCKET s, const char* buf, int len, int flags);
-WINPR_API int _sendto(SOCKET s, const char* buf, int len, int flags, const struct sockaddr* to, int tolen);
-WINPR_API int _setsockopt(SOCKET s, int level, int optname, const char* optval, int optlen);
-WINPR_API int _shutdown(SOCKET s, int how);
-WINPR_API SOCKET _socket(int af, int type, int protocol);
-WINPR_API struct hostent* _gethostbyaddr(const char* addr, int len, int type);
-WINPR_API struct hostent* _gethostbyname(const char* name);
-WINPR_API int _gethostname(char* name, int namelen);
-WINPR_API struct servent* _getservbyport(int port, const char* proto);
-WINPR_API struct servent* _getservbyname(const char* name, const char* proto);
-WINPR_API struct protoent* _getprotobynumber(int number);
-WINPR_API struct protoent* _getprotobyname(const char* name);
+UZI_API SOCKET _accept(SOCKET s, struct sockaddr* addr, int* addrlen);
+UZI_API int _bind(SOCKET s, const struct sockaddr* addr, int namelen);
+UZI_API int _closesocket(SOCKET s);
+UZI_API int _connect(SOCKET s, const struct sockaddr* name, int namelen);
+UZI_API int _ioctlsocket(SOCKET s, long cmd, u_long* argp);
+UZI_API int _getpeername(SOCKET s, struct sockaddr* name, int* namelen);
+UZI_API int _getsockname(SOCKET s, struct sockaddr* name, int* namelen);
+UZI_API int _getsockopt(SOCKET s, int level, int optname, char* optval, int* optlen);
+UZI_API u_long _htonl(u_long hostlong);
+UZI_API u_short _htons(u_short hostshort);
+UZI_API unsigned long _inet_addr(const char* cp);
+UZI_API char* _inet_ntoa(struct in_addr in);
+UZI_API int _listen(SOCKET s, int backlog);
+UZI_API u_long _ntohl(u_long netlong);
+UZI_API u_short _ntohs(u_short netshort);
+UZI_API int _recv(SOCKET s, char* buf, int len, int flags);
+UZI_API int _recvfrom(SOCKET s, char* buf, int len, int flags, struct sockaddr* from, int* fromlen);
+UZI_API int _select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* exceptfds, const struct timeval* timeout);
+UZI_API int _send(SOCKET s, const char* buf, int len, int flags);
+UZI_API int _sendto(SOCKET s, const char* buf, int len, int flags, const struct sockaddr* to, int tolen);
+UZI_API int _setsockopt(SOCKET s, int level, int optname, const char* optval, int optlen);
+UZI_API int _shutdown(SOCKET s, int how);
+UZI_API SOCKET _socket(int af, int type, int protocol);
+UZI_API struct hostent* _gethostbyaddr(const char* addr, int len, int type);
+UZI_API struct hostent* _gethostbyname(const char* name);
+UZI_API int _gethostname(char* name, int namelen);
+UZI_API struct servent* _getservbyport(int port, const char* proto);
+UZI_API struct servent* _getservbyname(const char* name, const char* proto);
+UZI_API struct protoent* _getprotobynumber(int number);
+UZI_API struct protoent* _getprotobyname(const char* name);
 
 #ifdef __cplusplus
 }
@@ -333,5 +333,5 @@ WINPR_API struct protoent* _getprotobyname(const char* name);
 
 #endif /* _WIN32 */
 
-#endif /* WINPR_WINSOCK_H */
+#endif /* UZI_WINSOCK_H */
 

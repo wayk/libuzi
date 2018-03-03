@@ -497,9 +497,9 @@ int WSAEventSelect(SOCKET s, WSAEVENT hEventObject, LONG lNetworkEvents)
 		return 0;
 
 	if (lNetworkEvents & FD_READ)
-		mode |= WINPR_FD_READ;
+		mode |= UZI_FD_READ;
 	if (lNetworkEvents & FD_WRITE)
-		mode |= WINPR_FD_WRITE;
+		mode |= UZI_FD_WRITE;
 
 	if (SetEventFileDescriptor(hEventObject, s, mode) < 0)
 		return SOCKET_ERROR;

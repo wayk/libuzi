@@ -29,7 +29,7 @@
 
 #define TAG "pool"
 
-#ifdef WINPR_THREAD_POOL
+#ifdef UZI_THREAD_POOL
 
 #ifdef _WIN32
 static INIT_ONCE init_once_module = INIT_ONCE_STATIC_INIT;
@@ -158,4 +158,4 @@ VOID winpr_WaitForThreadpoolWorkCallbacks(PTP_WORK pwk, BOOL fCancelPendingCallb
 	}
 }
 
-#endif /* WINPR_THREAD_POOL defined */
+#endif /* UZI_THREAD_POOL defined */

@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_COLLECTIONS_H
-#define WINPR_COLLECTIONS_H
+#ifndef UZI_COLLECTIONS_H
+#define UZI_COLLECTIONS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,26 +69,26 @@ struct _wQueue
 };
 typedef struct _wQueue wQueue;
 
-WINPR_API int Queue_Count(wQueue* queue);
+UZI_API int Queue_Count(wQueue* queue);
 
-WINPR_API void Queue_Lock(wQueue* queue);
-WINPR_API void Queue_Unlock(wQueue* queue);
+UZI_API void Queue_Lock(wQueue* queue);
+UZI_API void Queue_Unlock(wQueue* queue);
 
-WINPR_API HANDLE Queue_Event(wQueue* queue);
+UZI_API HANDLE Queue_Event(wQueue* queue);
 
 #define Queue_Object(_queue)	(&_queue->object)
 
-WINPR_API void Queue_Clear(wQueue* queue);
+UZI_API void Queue_Clear(wQueue* queue);
 
-WINPR_API BOOL Queue_Contains(wQueue* queue, void* obj);
+UZI_API BOOL Queue_Contains(wQueue* queue, void* obj);
 
-WINPR_API BOOL Queue_Enqueue(wQueue* queue, void* obj);
-WINPR_API void* Queue_Dequeue(wQueue* queue);
+UZI_API BOOL Queue_Enqueue(wQueue* queue, void* obj);
+UZI_API void* Queue_Dequeue(wQueue* queue);
 
-WINPR_API void* Queue_Peek(wQueue* queue);
+UZI_API void* Queue_Peek(wQueue* queue);
 
-WINPR_API wQueue* Queue_New(BOOL synchronized, int capacity, int growthFactor);
-WINPR_API void Queue_Free(wQueue* queue);
+UZI_API wQueue* Queue_New(BOOL synchronized, int capacity, int growthFactor);
+UZI_API void Queue_Free(wQueue* queue);
 
 /* System.Collections.Stack */
 
@@ -103,21 +103,21 @@ struct _wStack
 };
 typedef struct _wStack wStack;
 
-WINPR_API int Stack_Count(wStack* stack);
-WINPR_API BOOL Stack_IsSynchronized(wStack* stack);
+UZI_API int Stack_Count(wStack* stack);
+UZI_API BOOL Stack_IsSynchronized(wStack* stack);
 
 #define Stack_Object(_stack)	(&_stack->object)
 
-WINPR_API void Stack_Clear(wStack* stack);
-WINPR_API BOOL Stack_Contains(wStack* stack, void* obj);
+UZI_API void Stack_Clear(wStack* stack);
+UZI_API BOOL Stack_Contains(wStack* stack, void* obj);
 
-WINPR_API void Stack_Push(wStack* stack, void* obj);
-WINPR_API void* Stack_Pop(wStack* stack);
+UZI_API void Stack_Push(wStack* stack, void* obj);
+UZI_API void* Stack_Pop(wStack* stack);
 
-WINPR_API void* Stack_Peek(wStack* stack);
+UZI_API void* Stack_Peek(wStack* stack);
 
-WINPR_API wStack* Stack_New(BOOL synchronized);
-WINPR_API void Stack_Free(wStack* stack);
+UZI_API wStack* Stack_New(BOOL synchronized);
+UZI_API void Stack_Free(wStack* stack);
 
 /* System.Collections.ArrayList */
 
@@ -135,35 +135,35 @@ struct _wArrayList
 };
 typedef struct _wArrayList wArrayList;
 
-WINPR_API int ArrayList_Capacity(wArrayList* arrayList);
-WINPR_API int ArrayList_Count(wArrayList* arrayList);
-WINPR_API int ArrayList_Items(wArrayList* arrayList, ULONG_PTR** ppItems);
-WINPR_API BOOL ArrayList_IsFixedSized(wArrayList* arrayList);
-WINPR_API BOOL ArrayList_IsReadOnly(wArrayList* arrayList);
-WINPR_API BOOL ArrayList_IsSynchronized(wArrayList* arrayList);
+UZI_API int ArrayList_Capacity(wArrayList* arrayList);
+UZI_API int ArrayList_Count(wArrayList* arrayList);
+UZI_API int ArrayList_Items(wArrayList* arrayList, ULONG_PTR** ppItems);
+UZI_API BOOL ArrayList_IsFixedSized(wArrayList* arrayList);
+UZI_API BOOL ArrayList_IsReadOnly(wArrayList* arrayList);
+UZI_API BOOL ArrayList_IsSynchronized(wArrayList* arrayList);
 
-WINPR_API void ArrayList_Lock(wArrayList* arrayList);
-WINPR_API void ArrayList_Unlock(wArrayList* arrayList);
+UZI_API void ArrayList_Lock(wArrayList* arrayList);
+UZI_API void ArrayList_Unlock(wArrayList* arrayList);
 
-WINPR_API void* ArrayList_GetItem(wArrayList* arrayList, int index);
-WINPR_API void ArrayList_SetItem(wArrayList* arrayList, int index, void* obj);
+UZI_API void* ArrayList_GetItem(wArrayList* arrayList, int index);
+UZI_API void ArrayList_SetItem(wArrayList* arrayList, int index, void* obj);
 
 #define ArrayList_Object(_arrayList)	(&_arrayList->object)
 
-WINPR_API void ArrayList_Clear(wArrayList* arrayList);
-WINPR_API BOOL ArrayList_Contains(wArrayList* arrayList, void* obj);
+UZI_API void ArrayList_Clear(wArrayList* arrayList);
+UZI_API BOOL ArrayList_Contains(wArrayList* arrayList, void* obj);
 
-WINPR_API int ArrayList_Add(wArrayList* arrayList, void* obj);
-WINPR_API BOOL ArrayList_Insert(wArrayList* arrayList, int index, void* obj);
+UZI_API int ArrayList_Add(wArrayList* arrayList, void* obj);
+UZI_API BOOL ArrayList_Insert(wArrayList* arrayList, int index, void* obj);
 
-WINPR_API BOOL ArrayList_Remove(wArrayList* arrayList, void* obj);
-WINPR_API BOOL ArrayList_RemoveAt(wArrayList* arrayList, int index);
+UZI_API BOOL ArrayList_Remove(wArrayList* arrayList, void* obj);
+UZI_API BOOL ArrayList_RemoveAt(wArrayList* arrayList, int index);
 
-WINPR_API int ArrayList_IndexOf(wArrayList* arrayList, void* obj, int startIndex, int count);
-WINPR_API int ArrayList_LastIndexOf(wArrayList* arrayList, void* obj, int startIndex, int count);
+UZI_API int ArrayList_IndexOf(wArrayList* arrayList, void* obj, int startIndex, int count);
+UZI_API int ArrayList_LastIndexOf(wArrayList* arrayList, void* obj, int startIndex, int count);
 
-WINPR_API wArrayList* ArrayList_New(BOOL synchronized);
-WINPR_API void ArrayList_Free(wArrayList* arrayList);
+UZI_API wArrayList* ArrayList_New(BOOL synchronized);
+UZI_API void ArrayList_Free(wArrayList* arrayList);
 
 /* System.Collections.Specialized.ListDictionary */
 
@@ -191,24 +191,24 @@ typedef struct _wListDictionary wListDictionary;
 #define ListDictionary_KeyObject(_dictionary)	(&_dictionary->objectKey)
 #define ListDictionary_ValueObject(_dictionary)	(&_dictionary->objectValue)
 
-WINPR_API int ListDictionary_Count(wListDictionary* listDictionary);
+UZI_API int ListDictionary_Count(wListDictionary* listDictionary);
 
-WINPR_API void ListDictionary_Lock(wListDictionary* listDictionary);
-WINPR_API void ListDictionary_Unlock(wListDictionary* listDictionary);
+UZI_API void ListDictionary_Lock(wListDictionary* listDictionary);
+UZI_API void ListDictionary_Unlock(wListDictionary* listDictionary);
 
-WINPR_API BOOL ListDictionary_Add(wListDictionary* listDictionary, void* key, void* value);
-WINPR_API void* ListDictionary_Remove(wListDictionary* listDictionary, void* key);
-WINPR_API void* ListDictionary_Remove_Head(wListDictionary* listDictionary);
-WINPR_API void ListDictionary_Clear(wListDictionary* listDictionary);
+UZI_API BOOL ListDictionary_Add(wListDictionary* listDictionary, void* key, void* value);
+UZI_API void* ListDictionary_Remove(wListDictionary* listDictionary, void* key);
+UZI_API void* ListDictionary_Remove_Head(wListDictionary* listDictionary);
+UZI_API void ListDictionary_Clear(wListDictionary* listDictionary);
 
-WINPR_API BOOL ListDictionary_Contains(wListDictionary* listDictionary, void* key);
-WINPR_API int ListDictionary_GetKeys(wListDictionary* listDictionary, ULONG_PTR** ppKeys);
+UZI_API BOOL ListDictionary_Contains(wListDictionary* listDictionary, void* key);
+UZI_API int ListDictionary_GetKeys(wListDictionary* listDictionary, ULONG_PTR** ppKeys);
 
-WINPR_API void* ListDictionary_GetItemValue(wListDictionary* listDictionary, void* key);
-WINPR_API BOOL ListDictionary_SetItemValue(wListDictionary* listDictionary, void* key, void* value);
+UZI_API void* ListDictionary_GetItemValue(wListDictionary* listDictionary, void* key);
+UZI_API BOOL ListDictionary_SetItemValue(wListDictionary* listDictionary, void* key, void* value);
 
-WINPR_API wListDictionary* ListDictionary_New(BOOL synchronized);
-WINPR_API void ListDictionary_Free(wListDictionary* listDictionary);
+UZI_API wListDictionary* ListDictionary_New(BOOL synchronized);
+UZI_API void ListDictionary_Free(wListDictionary* listDictionary);
 
 /* System.Collections.Generic.LinkedList<T> */
 
@@ -231,26 +231,26 @@ struct _wLinkedList
 };
 typedef struct _wLinkedList wLinkedList;
 
-WINPR_API int LinkedList_Count(wLinkedList* list);
-WINPR_API void* LinkedList_First(wLinkedList* list);
-WINPR_API void* LinkedList_Last(wLinkedList* list);
+UZI_API int LinkedList_Count(wLinkedList* list);
+UZI_API void* LinkedList_First(wLinkedList* list);
+UZI_API void* LinkedList_Last(wLinkedList* list);
 
-WINPR_API BOOL LinkedList_Contains(wLinkedList* list, void* value);
-WINPR_API void LinkedList_Clear(wLinkedList* list);
+UZI_API BOOL LinkedList_Contains(wLinkedList* list, void* value);
+UZI_API void LinkedList_Clear(wLinkedList* list);
 
-WINPR_API BOOL LinkedList_AddFirst(wLinkedList* list, void* value);
-WINPR_API BOOL LinkedList_AddLast(wLinkedList* list, void* value);
+UZI_API BOOL LinkedList_AddFirst(wLinkedList* list, void* value);
+UZI_API BOOL LinkedList_AddLast(wLinkedList* list, void* value);
 
-WINPR_API BOOL LinkedList_Remove(wLinkedList* list, void* value);
-WINPR_API void LinkedList_RemoveFirst(wLinkedList* list);
-WINPR_API void LinkedList_RemoveLast(wLinkedList* list);
+UZI_API BOOL LinkedList_Remove(wLinkedList* list, void* value);
+UZI_API void LinkedList_RemoveFirst(wLinkedList* list);
+UZI_API void LinkedList_RemoveLast(wLinkedList* list);
 
-WINPR_API void LinkedList_Enumerator_Reset(wLinkedList* list);
-WINPR_API void* LinkedList_Enumerator_Current(wLinkedList* list);
-WINPR_API BOOL LinkedList_Enumerator_MoveNext(wLinkedList* list);
+UZI_API void LinkedList_Enumerator_Reset(wLinkedList* list);
+UZI_API void* LinkedList_Enumerator_Current(wLinkedList* list);
+UZI_API BOOL LinkedList_Enumerator_MoveNext(wLinkedList* list);
 
-WINPR_API wLinkedList* LinkedList_New(void);
-WINPR_API void LinkedList_Free(wLinkedList* list);
+UZI_API wLinkedList* LinkedList_New(void);
+UZI_API void LinkedList_Free(wLinkedList* list);
 
 /* Countdown Event */
 
@@ -263,20 +263,20 @@ struct _wCountdownEvent
 };
 typedef struct _wCountdownEvent wCountdownEvent;
 
-WINPR_API DWORD CountdownEvent_CurrentCount(wCountdownEvent* countdown);
-WINPR_API DWORD CountdownEvent_InitialCount(wCountdownEvent* countdown);
-WINPR_API BOOL CountdownEvent_IsSet(wCountdownEvent* countdown);
-WINPR_API HANDLE CountdownEvent_WaitHandle(wCountdownEvent* countdown);
+UZI_API DWORD CountdownEvent_CurrentCount(wCountdownEvent* countdown);
+UZI_API DWORD CountdownEvent_InitialCount(wCountdownEvent* countdown);
+UZI_API BOOL CountdownEvent_IsSet(wCountdownEvent* countdown);
+UZI_API HANDLE CountdownEvent_WaitHandle(wCountdownEvent* countdown);
 
-WINPR_API void CountdownEvent_AddCount(wCountdownEvent* countdown, DWORD signalCount);
-WINPR_API BOOL CountdownEvent_Signal(wCountdownEvent* countdown, DWORD signalCount);
-WINPR_API void CountdownEvent_Reset(wCountdownEvent* countdown, DWORD count);
+UZI_API void CountdownEvent_AddCount(wCountdownEvent* countdown, DWORD signalCount);
+UZI_API BOOL CountdownEvent_Signal(wCountdownEvent* countdown, DWORD signalCount);
+UZI_API void CountdownEvent_Reset(wCountdownEvent* countdown, DWORD count);
 
-WINPR_API wCountdownEvent* CountdownEvent_New(DWORD initialCount);
-WINPR_API void CountdownEvent_Free(wCountdownEvent* countdown);
+UZI_API wCountdownEvent* CountdownEvent_New(DWORD initialCount);
+UZI_API void CountdownEvent_Free(wCountdownEvent* countdown);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* WINPR_COLLECTIONS_H */
+#endif /* UZI_COLLECTIONS_H */

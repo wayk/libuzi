@@ -27,7 +27,7 @@
 
 #include "pool.h"
 
-#ifdef WINPR_THREAD_POOL
+#ifdef UZI_THREAD_POOL
 
 #ifdef _WIN32
 static INIT_ONCE init_once_module = INIT_ONCE_STATIC_INIT;
@@ -263,4 +263,4 @@ VOID winpr_SetThreadpoolThreadMaximum(PTP_POOL ptpp, DWORD cthrdMost)
 	ptpp->Maximum = cthrdMost;
 }
 
-#endif /* WINPR_THREAD_POOL defined */
+#endif /* UZI_THREAD_POOL defined */
