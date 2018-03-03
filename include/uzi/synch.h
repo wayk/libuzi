@@ -22,11 +22,7 @@
 #ifndef UZI_SYNCH_H
 #define UZI_SYNCH_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include <uzi/winpr.h>
+#include <uzi/uzi.h>
 #include <uzi/wtypes.h>
 #include <uzi/error.h>
 #include <uzi/handle.h>
@@ -42,36 +38,12 @@ extern "C" {
 UZI_API HANDLE CreateMutexA(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCSTR lpName);
 UZI_API HANDLE CreateMutexW(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCWSTR lpName);
 
-UZI_API HANDLE CreateMutexExA(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCTSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess);
-UZI_API HANDLE CreateMutexExW(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess);
-
 UZI_API BOOL ReleaseMutex(HANDLE hMutex);
-
-#ifdef UNICODE
-#define CreateMutex	CreateMutexW
-#define CreateMutexEx	CreateMutexExW
-#define OpenMutex	OpenMutexW
-#else
-#define CreateMutex	CreateMutexA
-#define CreateMutexEx	CreateMutexExA
-#define OpenMutex	OpenMutexA
-#endif
 
 /* Semaphore */
 
 UZI_API HANDLE CreateSemaphoreA(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCSTR lpName);
 UZI_API HANDLE CreateSemaphoreW(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName);
-
-UZI_API HANDLE OpenSemaphoreA(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCSTR lpName);
-UZI_API HANDLE OpenSemaphoreW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR lpName);
-
-#ifdef UNICODE
-#define CreateSemaphore		CreateSemaphoreW
-#define OpenSemaphore		OpenSemaphoreW
-#else
-#define CreateSemaphore		CreateSemaphoreA
-#define OpenSemaphore		OpenSemaphoreA
-#endif
 
 UZI_API BOOL ReleaseSemaphore(HANDLE hSemaphore, LONG lReleaseCount, LPLONG lpPreviousCount);
 
@@ -80,29 +52,8 @@ UZI_API BOOL ReleaseSemaphore(HANDLE hSemaphore, LONG lReleaseCount, LPLONG lpPr
 UZI_API HANDLE CreateEventA(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName);
 UZI_API HANDLE CreateEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCWSTR lpName);
 
-UZI_API HANDLE CreateEventExA(LPSECURITY_ATTRIBUTES lpEventAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess);
-UZI_API HANDLE CreateEventExW(LPSECURITY_ATTRIBUTES lpEventAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess);
-
-UZI_API HANDLE OpenEventA(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCSTR lpName);
-UZI_API HANDLE OpenEventW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR lpName);
-
 UZI_API BOOL SetEvent(HANDLE hEvent);
 UZI_API BOOL ResetEvent(HANDLE hEvent);
-
-#ifdef UNICODE
-#define CreateEvent		CreateEventW
-#define CreateEventEx		CreateEventExW
-#define OpenEvent		OpenEventW
-#else
-#define CreateEvent		CreateEventA
-#define CreateEventEx		CreateEventExA
-#define OpenEvent		OpenEventA
-#endif
-
-/* Condition Variable */
-
-typedef PVOID RTL_CONDITION_VARIABLE;
-typedef RTL_CONDITION_VARIABLE CONDITION_VARIABLE, *PCONDITION_VARIABLE;
 
 /* Critical Section */
 
@@ -202,16 +153,6 @@ UZI_API BOOL SetWaitableTimerEx(HANDLE hTimer, const LARGE_INTEGER* lpDueTime, L
 		PTIMERAPCROUTINE pfnCompletionRoutine, LPVOID lpArgToCompletionRoutine, PREASON_CONTEXT WakeContext, ULONG TolerableDelay);
 
 UZI_API BOOL CancelWaitableTimer(HANDLE hTimer);
-
-#ifdef UNICODE
-#define CreateWaitableTimer		CreateWaitableTimerW
-#define CreateWaitableTimerEx		CreateWaitableTimerExW
-#define OpenWaitableTimer		OpenWaitableTimerW
-#else
-#define CreateWaitableTimer		CreateWaitableTimerA
-#define CreateWaitableTimerEx		CreateWaitableTimerExA
-#define OpenWaitableTimer		OpenWaitableTimerA
-#endif
 
 /**
  * Timer-Queue Timer
@@ -334,12 +275,6 @@ UZI_API HANDLE CreateFileDescriptorEventA(LPSECURITY_ATTRIBUTES lpEventAttribute
 
 UZI_API HANDLE CreateWaitObjectEvent(LPSECURITY_ATTRIBUTES lpEventAttributes,
 		BOOL bManualReset, BOOL bInitialState, void* pObject);
-
-#ifdef UNICODE
-#define CreateFileDescriptorEvent	CreateFileDescriptorEventW
-#else
-#define CreateFileDescriptorEvent	CreateFileDescriptorEventA
-#endif
 
 UZI_API int GetEventFileDescriptor(HANDLE hEvent);
 UZI_API int SetEventFileDescriptor(HANDLE hEvent, int FileDescriptor, ULONG mode);

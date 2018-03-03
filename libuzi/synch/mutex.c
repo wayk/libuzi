@@ -119,16 +119,6 @@ HANDLE CreateMutexA(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner,
 	return CreateMutexW(lpMutexAttributes, bInitialOwner, NULL);
 }
 
-HANDLE CreateMutexExA(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCTSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
-{
-	return CreateMutexW(lpMutexAttributes, FALSE, NULL);
-}
-
-HANDLE CreateMutexExW(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
-{
-	return CreateMutexW(lpMutexAttributes, FALSE, NULL);
-}
-
 BOOL ReleaseMutex(HANDLE hMutex)
 {
 	ULONG Type;

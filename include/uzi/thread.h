@@ -20,7 +20,7 @@
 #ifndef UZI_THREAD_H
 #define UZI_THREAD_H
 
-#include <uzi/winpr.h>
+#include <uzi/uzi.h>
 #include <uzi/wtypes.h>
 
 #include <uzi/spec.h>
@@ -37,7 +37,7 @@ extern "C" {
 #define CREATE_SUSPENDED				0x00000004
 #define STACK_SIZE_PARAM_IS_A_RESERVATION		0x00010000
 
-UZI_API HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,
+UZI_API HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, size_t dwStackSize,
 	LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
 UZI_API DECLSPEC_NORETURN VOID ExitThread(DWORD dwExitCode);

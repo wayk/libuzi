@@ -15,13 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/uzi/version.h.in ${CMAKE_CURRENT_BINARY_DIR}/uzi/version.h)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/uzi/wtypes.h.in ${CMAKE_CURRENT_BINARY_DIR}/uzi/wtypes.h)
-set(WINPR_INSTALL_INCLUDE_DIR include/uzi${WINPR_VERSION_MAJOR}/uzi)
+set(UZI_INSTALL_INCLUDE_DIR include/uzi)
 
-file(GLOB WINPR_HEADERS "uzi/*.h")
-install(FILES ${WINPR_HEADERS} DESTINATION ${WINPR_INSTALL_INCLUDE_DIR} COMPONENT headers)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/uzi/version.h DESTINATION ${WINPR_INSTALL_INCLUDE_DIR} COMPONENT headers)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/uzi/wtypes.h DESTINATION ${WINPR_INSTALL_INCLUDE_DIR} COMPONENT headers)
-install(DIRECTORY uzi/tools DESTINATION ${WINPR_INSTALL_INCLUDE_DIR} COMPONENT headers FILES_MATCHING PATTERN "*.h")
+file(GLOB UZI_HEADERS "uzi/*.h")
+install(FILES ${UZI_HEADERS} DESTINATION ${UZI_INSTALL_INCLUDE_DIR} COMPONENT headers)
+install(DIRECTORY uzi/tools DESTINATION ${UZI_INSTALL_INCLUDE_DIR} COMPONENT headers FILES_MATCHING PATTERN "*.h")
 

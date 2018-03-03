@@ -20,7 +20,7 @@
 #ifndef UZI_POOL_H
 #define UZI_POOL_H
 
-#include <uzi/winpr.h>
+#include <uzi/uzi.h>
 #include <uzi/wtypes.h>
 
 #include <uzi/synch.h>
@@ -38,8 +38,8 @@ typedef struct _TP_POOL TP_POOL, *PTP_POOL;
 
 typedef struct _TP_POOL_STACK_INFORMATION
 {
-	SIZE_T StackReserve;
-	SIZE_T StackCommit;
+	size_t StackReserve;
+	size_t StackCommit;
 } TP_POOL_STACK_INFORMATION, *PTP_POOL_STACK_INFORMATION;
 
 typedef struct _TP_CLEANUP_GROUP TP_CLEANUP_GROUP, *PTP_CLEANUP_GROUP;
@@ -198,7 +198,7 @@ UZI_API VOID winpr_SetThreadpoolThreadMaximum(PTP_POOL ptpp, DWORD cthrdMost);
 
 /* Callback Environment */
 
-static INLINE VOID InitializeThreadpoolEnvironment(PTP_CALLBACK_ENVIRON pcbe)
+static inline VOID InitializeThreadpoolEnvironment(PTP_CALLBACK_ENVIRON pcbe)
 {
 	pcbe->Version = 1;
 	pcbe->Pool = NULL;
@@ -210,28 +210,28 @@ static INLINE VOID InitializeThreadpoolEnvironment(PTP_CALLBACK_ENVIRON pcbe)
 	pcbe->u.Flags = 0;
 }
 
-static INLINE VOID DestroyThreadpoolEnvironment(PTP_CALLBACK_ENVIRON pcbe)
+static inline VOID DestroyThreadpoolEnvironment(PTP_CALLBACK_ENVIRON pcbe)
 {
 	/* no actions, this may change in a future release. */
 }
 
-static INLINE VOID SetThreadpoolCallbackPool(PTP_CALLBACK_ENVIRON pcbe, PTP_POOL ptpp)
+static inline VOID SetThreadpoolCallbackPool(PTP_CALLBACK_ENVIRON pcbe, PTP_POOL ptpp)
 {
 	pcbe->Pool = ptpp;
 }
 
-static INLINE VOID SetThreadpoolCallbackCleanupGroup(PTP_CALLBACK_ENVIRON pcbe, PTP_CLEANUP_GROUP ptpcg, PTP_CLEANUP_GROUP_CANCEL_CALLBACK pfng)
+static inline VOID SetThreadpoolCallbackCleanupGroup(PTP_CALLBACK_ENVIRON pcbe, PTP_CLEANUP_GROUP ptpcg, PTP_CLEANUP_GROUP_CANCEL_CALLBACK pfng)
 {
 	pcbe->CleanupGroup = ptpcg;
 	pcbe->CleanupGroupCancelCallback = pfng;
 }
 
-static INLINE VOID SetThreadpoolCallbackRunsLong(PTP_CALLBACK_ENVIRON pcbe)
+static inline VOID SetThreadpoolCallbackRunsLong(PTP_CALLBACK_ENVIRON pcbe)
 {
 	pcbe->u.s.LongFunction = 1;
 }
 
-static INLINE VOID SetThreadpoolCallbackLibrary(PTP_CALLBACK_ENVIRON pcbe, PVOID mod)
+static inline VOID SetThreadpoolCallbackLibrary(PTP_CALLBACK_ENVIRON pcbe, PVOID mod)
 {
 	pcbe->RaceDll = mod;
 }

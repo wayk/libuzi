@@ -47,14 +47,14 @@ int TestSynchWaitableTimerAPC(int argc, char* argv[])
 		goto cleanup;
 	}
 
-	g_Event = CreateEvent(NULL, TRUE, FALSE, NULL);
+	g_Event = CreateEventA(NULL, TRUE, FALSE, NULL);
 	if (!g_Event)
 	{
 		printf("Failed to create event\n");
 		goto cleanup;
 	}
 
-	hTimer = CreateWaitableTimer(NULL, FALSE, NULL);
+	hTimer = CreateWaitableTimerA(NULL, FALSE, NULL);
 
 	if (!hTimer)
 		goto cleanup;

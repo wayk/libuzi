@@ -284,7 +284,7 @@ error:
 }
 
 HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes,
-                    SIZE_T dwStackSize,
+                    size_t dwStackSize,
                     LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter,
                     DWORD dwCreationFlags, LPDWORD lpThreadId)
 {

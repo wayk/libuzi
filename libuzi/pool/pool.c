@@ -121,7 +121,7 @@ static BOOL InitializeThreadpool(PTP_POOL pool)
 	if (!(pool->WorkComplete = CountdownEvent_New(0)))
 		goto fail_countdown_event;
 
-	if (!(pool->TerminateEvent = CreateEvent(NULL, TRUE, FALSE, NULL)))
+	if (!(pool->TerminateEvent = CreateEventA(NULL, TRUE, FALSE, NULL)))
 		goto fail_terminate_event;
 
 	if (!(pool->Threads = ArrayList_New(TRUE)))

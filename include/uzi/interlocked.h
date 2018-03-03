@@ -20,8 +20,8 @@
 #ifndef UZI_INTERLOCKED_H
 #define UZI_INTERLOCKED_H
 
+#include <uzi/uzi.h>
 #include <uzi/spec.h>
-#include <uzi/winpr.h>
 #include <uzi/wtypes.h>
 #include <uzi/platform.h>
 

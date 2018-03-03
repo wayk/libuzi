@@ -92,7 +92,7 @@ static BOOL TestSynchBarrierWithFlags(DWORD dwFlags, DWORD dwThreads, DWORD dwLo
 		return FALSE;
 	}
 
-	if (!(gStartEvent = CreateEvent(NULL, TRUE, FALSE, NULL)))
+	if (!(gStartEvent = CreateEventA(NULL, TRUE, FALSE, NULL)))
 	{
 		printf("%s: CreateEvent failed with error 0x%08x", __FUNCTION__,
 		       GetLastError());

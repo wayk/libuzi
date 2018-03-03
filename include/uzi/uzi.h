@@ -8,6 +8,32 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifdef UZI_DLL
+#if defined _WIN32 || defined __CYGWIN__
+#ifdef UZI_EXPORTS
+#ifdef __GNUC__
+#define UZI_API __attribute__((dllexport))
+#else
+#define UZI_API __declspec(dllexport)
+#endif
+#else
+#ifdef __GNUC__
+#define UZI_API __attribute__((dllimport))
+#else
+#define UZI_API __declspec(dllimport)
+#endif
+#endif
+#else
+#if __GNUC__ >= 4
+#define UZI_API   __attribute__ ((visibility("default")))
+#else
+#define UZI_API
+#endif
+#endif
+#else /* UZI_DLL */
+#define UZI_API
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

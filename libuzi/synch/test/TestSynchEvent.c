@@ -19,7 +19,7 @@ int TestSynchEvent(int argc, char* argv[])
 		return -1;
 	}
 
-	event = CreateEvent(NULL, TRUE, TRUE, NULL);
+	event = CreateEventA(NULL, TRUE, TRUE, NULL);
 
 	if (!event)
 	{

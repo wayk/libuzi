@@ -80,8 +80,8 @@ int TestListDictionary(int argc, char* argv[])
 
 	if (strcmp(value, val1) != 0)
 	{
-		printf("ListDictionary_GetItemValue: Expected : %"PRIuz", Actual: %"PRIuz"\n",
-				(size_t) val1, (size_t) value);
+		printf("ListDictionary_GetItemValue: Expected : %p, Actual: %p\n",
+				val1, value);
 		return -1;
 	}
 
@@ -89,8 +89,8 @@ int TestListDictionary(int argc, char* argv[])
 
 	if (strcmp(value, val2) != 0)
 	{
-		printf("ListDictionary_GetItemValue: Expected : %"PRIuz", Actual: %"PRIuz"\n",
-				(size_t) val2, (size_t) value);
+		printf("ListDictionary_GetItemValue: Expected : %p, Actual: %p\n",
+				val2, value);
 		return -1;
 	}
 
@@ -98,8 +98,8 @@ int TestListDictionary(int argc, char* argv[])
 
 	if (strcmp(value, val3) != 0)
 	{
-		printf("ListDictionary_GetItemValue: Expected : %"PRIuz", Actual: %"PRIuz"\n",
-				(size_t) val3, (size_t) value);
+		printf("ListDictionary_GetItemValue: Expected : %p, Actual: %p\n",
+				val3, value);
 		return -1;
 	}
 

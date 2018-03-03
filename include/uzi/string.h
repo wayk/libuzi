@@ -23,7 +23,8 @@
 
 #include <wchar.h>
 #include <string.h>
-#include <uzi/winpr.h>
+
+#include <uzi/uzi.h>
 #include <uzi/wtypes.h>
 
 #ifdef __cplusplus

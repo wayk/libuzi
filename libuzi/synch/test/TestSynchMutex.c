@@ -9,7 +9,7 @@ BOOL test_mutex_basic()
 	HANDLE mutex;
 	DWORD rc;
 
-	if (!(mutex = CreateMutex(NULL, FALSE, NULL)))
+	if (!(mutex = CreateMutexA(NULL, FALSE, NULL)))
 	{
 		printf("%s: CreateMutex failed\n", __FUNCTION__);
 		return FALSE;
@@ -47,7 +47,7 @@ BOOL test_mutex_recursive()
 	HANDLE mutex;
 	DWORD rc, i, cnt = 50;
 
-	if (!(mutex = CreateMutex(NULL, TRUE, NULL)))
+	if (!(mutex = CreateMutexA(NULL, TRUE, NULL)))
 	{
 		printf("%s: CreateMutex failed\n", __FUNCTION__);
 		return FALSE;
@@ -148,19 +148,19 @@ BOOL test_mutex_threading()
 	HANDLE hThread = NULL;
 	HANDLE hStartEvent = NULL;
 
-	if (!(thread1_mutex1 = CreateMutex(NULL, TRUE, NULL)))
+	if (!(thread1_mutex1 = CreateMutexA(NULL, TRUE, NULL)))
 	{
 		printf("%s: CreateMutex thread1_mutex1 failed\n", __FUNCTION__);
 		goto fail;
 	}
 
-	if (!(thread1_mutex2 = CreateMutex(NULL, FALSE, NULL)))
+	if (!(thread1_mutex2 = CreateMutexA(NULL, FALSE, NULL)))
 	{
 		printf("%s: CreateMutex thread1_mutex2 failed\n", __FUNCTION__);
 		goto fail;
 	}
 
-	if (!(hStartEvent = CreateEvent(NULL, TRUE, FALSE, NULL)))
+	if (!(hStartEvent = CreateEventA(NULL, TRUE, FALSE, NULL)))
 	{
 		fprintf(stderr, "%s: error creating start event\n", __FUNCTION__);
 		goto fail;

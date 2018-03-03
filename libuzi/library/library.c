@@ -77,17 +77,6 @@ HMODULE LoadLibraryA(LPCSTR lpLibFileName)
 #endif
 }
 
-HMODULE LoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
-{
-#if !defined(_UWP)
-	HMODULE library;
-	library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
-	return library;
-#else
-	return (HMODULE) NULL;
-#endif
-}
-
 #endif
 
 #if !defined(_WIN32) && !defined(__CYGWIN__)

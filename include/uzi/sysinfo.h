@@ -20,10 +20,7 @@
 #ifndef UZI_SYSINFO_H
 #define UZI_SYSINFO_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <uzi/winpr.h>
+#include <uzi/uzi.h>
 #include <uzi/wtypes.h>
 
 #ifdef __cplusplus

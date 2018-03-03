@@ -384,11 +384,7 @@ set(UZI_INCLUDE_BINARY_DIR "${UZI_BINARY_DIR}/include")
 include_directories(${UZI_INCLUDE_SOURCE_DIR})
 include_directories(${UZI_INCLUDE_BINARY_DIR})
 
-configure_file(${UZI_INCLUDE_SOURCE_DIR}/uzi/version.h.in ${UZI_INCLUDE_BINARY_DIR}/uzi/version.h)
-configure_file(${UZI_INCLUDE_SOURCE_DIR}/uzi/wtypes.h.in ${UZI_INCLUDE_BINARY_DIR}/uzi/wtypes.h)
-
 file(GLOB UZI_HDRS "${UZI_INCLUDE_SOURCE_DIR}/uzi/*.h")
-list(APPEND UZI_HRS "${UZI_INCLUDE_BINARY_DIR}/uzi/version.h")
 
 set(UZI_REL_DIR "${CMAKE_SOURCE_DIR}")
 set(UZI_SRCS "")

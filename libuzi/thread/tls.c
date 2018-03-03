@@ -25,12 +25,20 @@
 
 #include <uzi/thread.h>
 
-/**
- * TlsAlloc
- * TlsFree
- * TlsGetValue
- * TlsSetValue
- */
+/* Thread local storage keyword define */
+#if defined _WIN32 || defined __CYGWIN__
+#ifdef __GNUC__
+#define UZI_TLS __thread
+#else
+#define UZI_TLS __declspec(thread)
+#endif
+#elif !defined(__IOS__)
+#define UZI_TLS __thread
+#else
+//#warning "Target iOS does not support Thread Local Storage!"
+//#warning "Multi Instance support is disabled!"
+#define UZI_TLS
+#endif
 
 #ifndef _WIN32
 

@@ -10,7 +10,7 @@ int TestSynchWaitableTimer(int argc, char* argv[])
 	LARGE_INTEGER due;
 	int result = -1;
 
-	timer = CreateWaitableTimer(NULL, FALSE, NULL);
+	timer = CreateWaitableTimerA(NULL, FALSE, NULL);
 
 	if (!timer)
 	{

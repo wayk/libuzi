@@ -43,7 +43,7 @@ struct winpr_thread
 	BOOL exited;
 	DWORD dwExitCode;
 	pthread_t thread;
-	SIZE_T dwStackSize;
+	size_t dwStackSize;
 	LPVOID lpParameter;
 	pthread_mutex_t mutex;
 	pthread_mutex_t threadIsReadyMutex;

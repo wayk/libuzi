@@ -82,7 +82,7 @@ int TestSynchInit(int argc, char* argv[])
 	*pTestOnceFunctionCalls = 0;
 	*pInitOnceExecuteOnceCalls = 0;
 
-	if (!(hStartEvent = CreateEvent(NULL, TRUE, FALSE, NULL)))
+	if (!(hStartEvent = CreateEventA(NULL, TRUE, FALSE, NULL)))
 	{
 		fprintf(stderr, "error creating start event\n");
 		InterlockedIncrement(pErrors);

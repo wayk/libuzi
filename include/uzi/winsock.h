@@ -20,7 +20,7 @@
 #ifndef UZI_WINSOCK_H
 #define UZI_WINSOCK_H
 
-#include <uzi/winpr.h>
+#include <uzi/uzi.h>
 #include <uzi/wtypes.h>
 #include <uzi/windows.h>
 
@@ -270,14 +270,6 @@ typedef UINT32 GROUP;
 #define SIO_GET_MULTICAST_FILTER	_IOW('t', 124 | IOC_IN, ULONG)
 #define SIOCSIPMSFILTER			SIO_SET_MULTICAST_FILTER
 #define SIOCGIPMSFILTER			SIO_GET_MULTICAST_FILTER
-
-#ifdef UNICODE
-#define WSAPROTOCOL_INFO	WSAPROTOCOL_INFOW
-#define LPWSAPROTOCOL_INFO	LPWSAPROTOCOL_INFOW
-#else
-#define WSAPROTOCOL_INFO	WSAPROTOCOL_INFOA
-#define LPWSAPROTOCOL_INFO	LPWSAPROTOCOL_INFOA
-#endif
 
 #ifdef __cplusplus
 extern "C" {

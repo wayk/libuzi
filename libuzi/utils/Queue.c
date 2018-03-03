@@ -266,7 +266,7 @@ wQueue* Queue_New(BOOL synchronized, int capacity, int growthFactor)
 	if (!queue->array)
 		goto out_free;
 
-	queue->event = CreateEvent(NULL, TRUE, FALSE, NULL);
+	queue->event = CreateEventA(NULL, TRUE, FALSE, NULL);
 	if (!queue->event)
 		goto out_free_array;
 

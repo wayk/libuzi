@@ -111,10 +111,10 @@ BOOL WINAPI winpr_InitializeSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpB
 	if (lSpinCount == -1)
 		lSpinCount = 2000;
 
-	if (!(hEvent0 = CreateEvent(NULL, TRUE, FALSE, NULL)))
+	if (!(hEvent0 = CreateEventA(NULL, TRUE, FALSE, NULL)))
 		return FALSE;
 
-	if (!(hEvent1 = CreateEvent(NULL, TRUE, FALSE, NULL)))
+	if (!(hEvent1 = CreateEventA(NULL, TRUE, FALSE, NULL)))
 	{
 		CloseHandle(hEvent0);
 		return FALSE;

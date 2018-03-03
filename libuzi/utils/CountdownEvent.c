@@ -161,7 +161,7 @@ wCountdownEvent* CountdownEvent_New(DWORD initialCount)
 	if (!InitializeCriticalSectionAndSpinCount(&countdown->lock, 4000))
 		goto fail_critical_section;
 
-	if (!(countdown->event = CreateEvent(NULL, TRUE, FALSE, NULL)))
+	if (!(countdown->event = CreateEventA(NULL, TRUE, FALSE, NULL)))
 		goto fail_create_event;
 
 	if (countdown->count == 0)

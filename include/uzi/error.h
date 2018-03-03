@@ -20,7 +20,7 @@
 #ifndef UZI_ERROR_H
 #define UZI_ERROR_H
 
-#include <uzi/winpr.h>
+#include <uzi/uzi.h>
 #include <uzi/wtypes.h>
 
 #ifdef _WIN32

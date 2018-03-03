@@ -6,7 +6,7 @@ int TestSynchSemaphore(int argc, char* argv[])
 {
 	HANDLE semaphore;
 
-	semaphore = CreateSemaphore(NULL, 0, 1, NULL);
+	semaphore = CreateSemaphoreA(NULL, 0, 1, NULL);
 
 	if (!semaphore)
 	{

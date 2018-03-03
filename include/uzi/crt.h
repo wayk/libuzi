@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <uzi/winpr.h>
+#include <uzi/uzi.h>
 
 #include <uzi/spec.h>
 #include <uzi/string.h>
@@ -40,28 +40,28 @@
 #endif
 
 #ifndef _rotl
-static INLINE UINT32 _rotl(UINT32 value, int shift)
+static inline UINT32 _rotl(UINT32 value, int shift)
 {
 	return (value << shift) | (value >> (32 - shift));
 }
 #endif
 
 #ifndef _rotl64
-static INLINE UINT64 _rotl64(UINT64 value, int shift)
+static inline UINT64 _rotl64(UINT64 value, int shift)
 {
 	return (value << shift) | (value >> (64 - shift));
 }
 #endif
 
 #ifndef _rotr
-static INLINE UINT32 _rotr(UINT32 value, int shift)
+static inline UINT32 _rotr(UINT32 value, int shift)
 {
 	return (value >> shift) | (value << (32 - shift));
 }
 #endif
 
 #ifndef _rotr64
-static INLINE UINT64 _rotr64(UINT64 value, int shift)
+static inline UINT64 _rotr64(UINT64 value, int shift)
 {
 	return (value >> shift) | (value << (64 - shift));
 }
@@ -74,7 +74,7 @@ static INLINE UINT64 _rotr64(UINT64 value, int shift)
 
 #else
 
-static INLINE UINT32 _byteswap_ulong(UINT32 _val)
+static inline UINT32 _byteswap_ulong(UINT32 _val)
 {
 	return (((_val) >> 24) | \
 	        (((_val) & 0x00FF0000) >> 8) | \
@@ -82,7 +82,7 @@ static INLINE UINT32 _byteswap_ulong(UINT32 _val)
 	        ((_val) << 24));
 }
 
-static INLINE UINT64 _byteswap_uint64(UINT64 _val)
+static inline UINT64 _byteswap_uint64(UINT64 _val)
 {
 	return (((_val) << 56) | \
 	        (((_val) << 40) & 0xFF000000000000) | \
@@ -102,7 +102,7 @@ static INLINE UINT64 _byteswap_uint64(UINT64 _val)
 
 #else
 
-static INLINE UINT16 _byteswap_ushort(UINT16 _val)
+static inline UINT16 _byteswap_ushort(UINT16 _val)
 {
 	return (((_val) >> 8) | ((_val) << 8));
 }
@@ -120,7 +120,7 @@ static INLINE UINT16 _byteswap_ushort(UINT16 _val)
 extern "C" {
 #endif
 
-UZI_API PVOID SecureZeroMemory(PVOID ptr, SIZE_T cnt);
+UZI_API PVOID SecureZeroMemory(PVOID ptr, size_t cnt);
 
 #ifdef __cplusplus
 }

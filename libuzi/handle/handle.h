@@ -79,7 +79,7 @@ struct winpr_handle
 };
 typedef struct winpr_handle WINPR_HANDLE;
 
-static INLINE void WINPR_HANDLE_SET_TYPE_AND_MODE(void* _handle,
+static inline void WINPR_HANDLE_SET_TYPE_AND_MODE(void* _handle,
 						 ULONG _type, ULONG _mode)
 {
 	WINPR_HANDLE* hdl = (WINPR_HANDLE*)_handle;
@@ -88,7 +88,7 @@ static INLINE void WINPR_HANDLE_SET_TYPE_AND_MODE(void* _handle,
 	hdl->Mode = _mode;
 }
 
-static INLINE BOOL winpr_Handle_GetInfo(HANDLE handle, ULONG* pType, WINPR_HANDLE** pObject)
+static inline BOOL winpr_Handle_GetInfo(HANDLE handle, ULONG* pType, WINPR_HANDLE** pObject)
 {
 	WINPR_HANDLE* wHandle;
 
@@ -103,7 +103,7 @@ static INLINE BOOL winpr_Handle_GetInfo(HANDLE handle, ULONG* pType, WINPR_HANDL
 	return TRUE;
 }
 
-static INLINE int winpr_Handle_getFd(HANDLE handle)
+static inline int winpr_Handle_getFd(HANDLE handle)
 {
 	WINPR_HANDLE *hdl;
 	ULONG type;
@@ -117,7 +117,7 @@ static INLINE int winpr_Handle_getFd(HANDLE handle)
 	return hdl->ops->GetFd(handle);
 }
 
-static INLINE DWORD winpr_Handle_cleanup(HANDLE handle)
+static inline DWORD winpr_Handle_cleanup(HANDLE handle)
 {
 	WINPR_HANDLE *hdl;
 	ULONG type;

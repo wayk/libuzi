@@ -458,7 +458,7 @@ int WSAGetLastError(void)
 
 HANDLE WSACreateEvent(void)
 {
-	return CreateEvent(NULL, TRUE, FALSE, NULL);
+	return CreateEventA(NULL, TRUE, FALSE, NULL);
 }
 
 BOOL WSASetEvent(HANDLE hEvent)
