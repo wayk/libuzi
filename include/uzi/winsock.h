@@ -24,14 +24,11 @@
 #include <uzi/wtypes.h>
 #include <uzi/windows.h>
 
-#ifdef WINPR_MONO_CONFLICT
-#define closesocket winpr_closesocket
-#endif
-
 #ifdef _WIN32
 
 #define _accept			accept
 #define _bind			bind
+#define _closesocket		closesocket
 #define _connect		connect
 #define _ioctlsocket		ioctlsocket
 #define _getpeername		getpeername
@@ -299,15 +296,9 @@ WINPR_API BOOL WSACloseEvent(HANDLE hEvent);
 
 WINPR_API int WSAEventSelect(SOCKET s, WSAEVENT hEventObject, LONG lNetworkEvents);
 
-WINPR_API DWORD WSAWaitForMultipleEvents(DWORD cEvents,
-		const HANDLE* lphEvents, BOOL fWaitAll, DWORD dwTimeout, BOOL fAlertable);
-
-WINPR_API SOCKET WSASocketA(int af, int type, int protocol, LPWSAPROTOCOL_INFOA lpProtocolInfo, GROUP g, DWORD dwFlags);
-WINPR_API SOCKET WSASocketW(int af, int type, int protocol, LPWSAPROTOCOL_INFOW lpProtocolInfo, GROUP g, DWORD dwFlags);
-
 WINPR_API SOCKET _accept(SOCKET s, struct sockaddr* addr, int* addrlen);
 WINPR_API int _bind(SOCKET s, const struct sockaddr* addr, int namelen);
-WINPR_API int closesocket(SOCKET s);
+WINPR_API int _closesocket(SOCKET s);
 WINPR_API int _connect(SOCKET s, const struct sockaddr* name, int namelen);
 WINPR_API int _ioctlsocket(SOCKET s, long cmd, u_long* argp);
 WINPR_API int _getpeername(SOCKET s, struct sockaddr* name, int* namelen);
@@ -338,12 +329,6 @@ WINPR_API struct protoent* _getprotobyname(const char* name);
 
 #ifdef __cplusplus
 }
-#endif
-
-#ifdef UNICODE
-#define WSASocket	WSASocketW
-#else
-#define WSASocket	WSASocketA
 #endif
 
 #endif /* _WIN32 */

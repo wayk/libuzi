@@ -507,25 +507,6 @@ int WSAEventSelect(SOCKET s, WSAEVENT hEventObject, LONG lNetworkEvents)
 	return 0;
 }
 
-DWORD WSAWaitForMultipleEvents(DWORD cEvents, const HANDLE* lphEvents, BOOL fWaitAll, DWORD dwTimeout, BOOL fAlertable)
-{
-	return WaitForMultipleObjectsEx(cEvents, lphEvents, fWaitAll, dwTimeout, fAlertable);
-}
-
-SOCKET WSASocketA(int af, int type, int protocol, LPWSAPROTOCOL_INFOA lpProtocolInfo, GROUP g, DWORD dwFlags)
-{
-	SOCKET s;
-
-	s = _socket(af, type, protocol);
-
-	return s;
-}
-
-SOCKET WSASocketW(int af, int type, int protocol, LPWSAPROTOCOL_INFOW lpProtocolInfo, GROUP g, DWORD dwFlags)
-{
-	return WSASocketA(af, type, protocol, (LPWSAPROTOCOL_INFOA) lpProtocolInfo, g, dwFlags);
-}
-
 SOCKET _accept(SOCKET s, struct sockaddr* addr, int* addrlen)
 {
 	int status;
@@ -551,7 +532,7 @@ int _bind(SOCKET s, const struct sockaddr* addr, int namelen)
 	return status;
 }
 
-int closesocket(SOCKET s)
+int _closesocket(SOCKET s)
 {
 	int status;
 	int fd = (int) s;

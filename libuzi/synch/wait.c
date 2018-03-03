@@ -43,16 +43,10 @@
 
 #include "synch.h"
 #include "../thread/thread.h"
+
 #include <uzi/thread.h>
 
 #define TAG "wait"
-
-/**
- * WaitForSingleObject
- * WaitForSingleObjectEx
- * WaitForMultipleObjectsEx
- * SignalObjectAndWait
- */
 
 #ifndef _WIN32
 
@@ -79,8 +73,7 @@
 /* clock_gettime is not implemented on OSX prior to 10.12 */
 int _mach_clock_gettime(int clk_id, struct timespec *t);
 
-int 
-_mach_clock_gettime(int clk_id, struct timespec *t)
+int _mach_clock_gettime(int clk_id, struct timespec *t)
 {
 	UINT64 time;
 	double seconds;
@@ -145,8 +138,6 @@ static long long ts_difftime(const struct timespec *o,
 #define CONST_NEEDED const
 #define STATIC_NEEDED static
 #endif
-
-//int pthread_mutex_timedlock(pthread_mutex_t* _Nonnull, const struct timespec* _Nonnull)
 
 STATIC_NEEDED int pthread_mutex_timedlock(pthread_mutex_t *mutex, CONST_NEEDED struct timespec *timeout)
 {
@@ -521,11 +512,6 @@ DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE *lpHandles, BOOL bWaitAl
 
 	SetLastError(ERROR_INTERNAL_ERROR);
 	return WAIT_FAILED;
-}
-
-DWORD WaitForMultipleObjectsEx(DWORD nCount, const HANDLE *lpHandles, BOOL bWaitAll, DWORD dwMilliseconds, BOOL bAlertable)
-{
-	return WaitForMultipleObjects(nCount, lpHandles, bWaitAll, dwMilliseconds);
 }
 
 #endif

@@ -129,16 +129,6 @@ HANDLE CreateMutexExW(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, D
 	return CreateMutexW(lpMutexAttributes, FALSE, NULL);
 }
 
-HANDLE OpenMutexA(DWORD dwDesiredAccess, BOOL bInheritHandle,LPCSTR lpName)
-{
-	return NULL;
-}
-
-HANDLE OpenMutexW(DWORD dwDesiredAccess, BOOL bInheritHandle,LPCWSTR lpName)
-{
-	return NULL;
-}
-
 BOOL ReleaseMutex(HANDLE hMutex)
 {
 	ULONG Type;

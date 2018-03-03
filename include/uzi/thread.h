@@ -156,16 +156,6 @@ WINPR_API DWORD GetCurrentProcessId(void);
 
 WINPR_API BOOL TerminateProcess(HANDLE hProcess, UINT uExitCode);
 
-/* Process Argument Vector Parsing */
-
-WINPR_API LPWSTR* CommandLineToArgvW(LPCWSTR lpCmdLine, int* pNumArgs);
-
-#ifdef UNICODE
-#define CommandLineToArgv	CommandLineToArgvW
-#else
-#define CommandLineToArgv	CommandLineToArgvA
-#endif
-
 /* Thread */
 
 #define CREATE_SUSPENDED				0x00000004
@@ -173,9 +163,6 @@ WINPR_API LPWSTR* CommandLineToArgvW(LPCWSTR lpCmdLine, int* pNumArgs);
 
 WINPR_API HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,
 	LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
-
-WINPR_API HANDLE CreateRemoteThread(HANDLE hProcess, LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,
-		LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
 WINPR_API DECLSPEC_NORETURN VOID ExitThread(DWORD dwExitCode);
 WINPR_API BOOL GetExitCodeThread(HANDLE hThread, LPDWORD lpExitCode);

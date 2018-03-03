@@ -66,7 +66,7 @@ static int TimerGetFd(HANDLE handle)
 	return timer->fd;
 }
 
-static DWORD  TimerCleanupHandle(HANDLE handle)
+static DWORD TimerCleanupHandle(HANDLE handle)
 {
 	int length;
 	UINT64 expirations;
@@ -182,7 +182,6 @@ int InitializeWaitableTimer(WINPR_TIMER* timer)
 			close(timer->fd);
 			return -1;
 		}
-
 #else
 		result = -1;
 #endif
@@ -201,7 +200,6 @@ int InitializeWaitableTimer(WINPR_TIMER* timer)
 		{
 			return -1;
 		}
-
 #else
 		result = -1;
 #endif
@@ -380,16 +378,6 @@ BOOL SetWaitableTimerEx(HANDLE hTimer, const LARGE_INTEGER* lpDueTime, LONG lPer
 		return TRUE;
 
 	return TRUE;
-}
-
-HANDLE OpenWaitableTimerA(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCSTR lpTimerName)
-{
-	return NULL;
-}
-
-HANDLE OpenWaitableTimerW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR lpTimerName)
-{
-	return NULL;
 }
 
 BOOL CancelWaitableTimer(HANDLE hTimer)

@@ -84,7 +84,7 @@ HMODULE LoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
 	library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
 	return library;
 #else
-	return (HMODULE)NULL;
+	return (HMODULE) NULL;
 #endif
 }
 

@@ -368,4 +368,3 @@ void* GetEventWaitObject(HANDLE hEvent)
 	return hEvent;
 #endif
 }
-

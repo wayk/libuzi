@@ -214,12 +214,6 @@ void GetSystemTime(LPSYSTEMTIME lpSystemTime)
 	}
 }
 
-BOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime)
-{
-	/* TODO: Implement */
-	return FALSE;
-}
-
 VOID GetLocalTime(LPSYSTEMTIME lpSystemTime)
 {
 	time_t ct = 0;
@@ -241,12 +235,6 @@ VOID GetLocalTime(LPSYSTEMTIME lpSystemTime)
 		lpSystemTime->wSecond = (WORD) ltm->tm_sec;
 		lpSystemTime->wMilliseconds = wMilliseconds;
 	}
-}
-
-BOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime)
-{
-	/* TODO: Implement */
-	return FALSE;
 }
 
 VOID GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime)
@@ -279,7 +267,6 @@ DWORD GetTickCount(void)
 
 	if (!clock_gettime(CLOCK_MONOTONIC_RAW, &ts))
 		ticks = (ts.tv_sec * 1000) + (ts.tv_nsec / 1000000);
-
 #else
 	/**
 	 * FIXME: this is relative to the Epoch time, and we

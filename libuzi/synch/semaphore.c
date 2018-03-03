@@ -79,8 +79,9 @@ static DWORD SemaphoreCleanupHandle(HANDLE handle)
 	return WAIT_OBJECT_0;
 }
 
-BOOL SemaphoreCloseHandle(HANDLE handle) {
-	WINPR_SEMAPHORE *semaphore = (WINPR_SEMAPHORE *) handle;
+BOOL SemaphoreCloseHandle(HANDLE handle)
+{
+	WINPR_SEMAPHORE* semaphore = (WINPR_SEMAPHORE*) handle;
 
 	if (!SemaphoreIsHandled(handle))
 		return FALSE;
@@ -110,11 +111,12 @@ BOOL SemaphoreCloseHandle(HANDLE handle) {
 	return TRUE;
 }
 
-static HANDLE_OPS ops = {
-		SemaphoreIsHandled,
-		SemaphoreCloseHandle,
-		SemaphoreGetFd,
-		SemaphoreCleanupHandle
+static HANDLE_OPS ops =
+{
+	SemaphoreIsHandled,
+	SemaphoreCloseHandle,
+	SemaphoreGetFd,
+	SemaphoreCleanupHandle
 };
 
 HANDLE CreateSemaphoreW(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName)
@@ -195,7 +197,6 @@ BOOL ReleaseSemaphore(HANDLE hSemaphore, LONG lReleaseCount, LPLONG lpPreviousCo
 	{
 		semaphore = (WINPR_SEMAPHORE*) Object;
 #ifdef WINPR_PIPE_SEMAPHORE
-
 		if (semaphore->pipe_fd[0] != -1)
 		{
 			while (lReleaseCount > 0)
@@ -206,7 +207,6 @@ BOOL ReleaseSemaphore(HANDLE hSemaphore, LONG lReleaseCount, LPLONG lpPreviousCo
 				lReleaseCount--;
 			}
 		}
-
 #else
 #if defined __APPLE__
 		semaphore_signal(*((winpr_sem_t*) semaphore->sem));
