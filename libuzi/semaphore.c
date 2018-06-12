@@ -32,7 +32,7 @@
 #ifndef _WIN32
 
 #include <errno.h>
-#include "../handle/handle.h"
+#include "handle.h"
 
 #define TAG "semaphore"
 

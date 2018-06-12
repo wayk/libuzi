@@ -29,8 +29,8 @@
 #include <assert.h>
 #include <pthread.h>
 
-#include "../synch/synch.h"
-#include "../thread/thread.h"
+#include "synch.h"
+#include "thread.h"
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -38,7 +38,7 @@
 
 #include <assert.h>
 
-#include "../handle/handle.h"
+#include "handle.h"
 
 BOOL CloseHandle(HANDLE hObject)
 {

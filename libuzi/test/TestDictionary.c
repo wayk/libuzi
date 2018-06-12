@@ -10,7 +10,7 @@ static char* val1 = "val1";
 static char* val2 = "val2";
 static char* val3 = "val3";
 
-int TestListDictionary(int argc, char* argv[])
+int TestDictionary(int argc, char* argv[])
 {
 	int count;
 	char* value;

@@ -42,7 +42,7 @@
 #include <uzi/platform.h>
 
 #include "synch.h"
-#include "../thread/thread.h"
+#include "thread.h"
 
 #include <uzi/thread.h>
 
@@ -55,7 +55,7 @@
 #include <sys/time.h>
 #include <sys/wait.h>
 
-#include "../handle/handle.h"
+#include "handle.h"
 
 /* clock_gettime is not implemented on OSX prior to 10.12 */
 #ifdef __MACH__

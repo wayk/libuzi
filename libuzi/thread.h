@@ -27,7 +27,7 @@
 
 #include <uzi/thread.h>
 
-#include "../handle/handle.h"
+#include "handle.h"
 
 typedef void *(*pthread_start_routine)(void *);
 

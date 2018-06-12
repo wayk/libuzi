@@ -1,13 +1,27 @@
 
-set(MODULE_NAME "TestUziInterlocked")
-set(MODULE_PREFIX "TEST_UZI_INTERLOCKED")
+set(MODULE_NAME "TestUzi")
+set(MODULE_PREFIX "TEST_UZI")
 
 set(${MODULE_PREFIX}_DRIVER ${MODULE_NAME}.c)
 
 set(${MODULE_PREFIX}_TESTS
+	TestAlignment.c
+	TestCpuFeatures.c
+	TestDictionary.c
 	TestInterlockedAccess.c
 	TestInterlockedSList.c
-	TestInterlockedDList.c)
+	TestInterlockedDList.c
+	TestSynchInit.c
+	TestSynchEvent.c
+	TestSynchMutex.c
+	TestSynchBarrier.c
+	TestSynchCritical.c
+	TestSynchSemaphore.c
+	TestSynchThread.c
+	TestSynchMultipleThreads.c
+	TestSynchTimerQueue.c
+	TestSynchWaitableTimer.c
+	TestSynchWaitableTimerAPC.c)
 
 create_test_sourcelist(${MODULE_PREFIX}_SRCS
 	${${MODULE_PREFIX}_DRIVER}

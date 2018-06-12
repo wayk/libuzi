@@ -48,7 +48,7 @@
 
 #include "thread.h"
 
-#include "../handle/handle.h"
+#include "handle.h"
 
 #define TAG "thread"
 

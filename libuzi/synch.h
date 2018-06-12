@@ -32,7 +32,7 @@
 #define WITH_POSIX_TIMER	1
 #endif
 
-#include "../handle/handle.h"
+#include "handle.h"
 
 #ifndef _WIN32
 
