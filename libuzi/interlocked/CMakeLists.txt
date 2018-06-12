@@ -1,5 +1,5 @@
 # WinPR: Windows Portable Runtime
-# uzi cmake build script
+# libwinpr-interlocked cmake build script
 #
 # Copyright 2012 Marc-Andre Moreau <marcandre.moreau@gmail.com>
 #
@@ -15,9 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set(UZI_INSTALL_INCLUDE_DIR include/uzi)
+uzi_module_add(interlocked.c)
 
-file(GLOB UZI_HEADERS "uzi/*.h")
-install(FILES ${UZI_HEADERS} DESTINATION ${UZI_INSTALL_INCLUDE_DIR} COMPONENT headers)
-install(DIRECTORY uzi/tools DESTINATION ${UZI_INSTALL_INCLUDE_DIR} COMPONENT headers FILES_MATCHING PATTERN "*.h")
-
+if(BUILD_TESTING)
+	add_subdirectory(test)
+endif()
