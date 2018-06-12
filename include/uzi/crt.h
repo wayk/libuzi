@@ -115,16 +115,6 @@ static inline UINT16 _byteswap_ushort(UINT16 _val)
 #define	FillMemory(Destination, Length, Fill)		memset((Destination), (Fill), (Length))
 #define ZeroMemory(Destination, Length)			memset((Destination), 0, (Length))
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-UZI_API PVOID SecureZeroMemory(PVOID ptr, size_t cnt);
-
-#ifdef __cplusplus
-}
-#endif
-
 /* Data Alignment */
 
 #ifndef _ERRNO_T_DEFINED
@@ -149,15 +139,6 @@ UZI_API void* _aligned_offset_recalloc(void* memblock, size_t num, size_t size, 
 UZI_API size_t _aligned_msize(void* memblock, size_t alignment, size_t offset);
 
 UZI_API void _aligned_free(void* memblock);
-
-/* Data Conversion */
-
-UZI_API errno_t _itoa_s(int value, char* buffer, size_t sizeInCharacters, int radix);
-
-/* Buffer Manipulation */
-
-UZI_API errno_t memmove_s(void* dest, size_t numberOfElements, const void* src, size_t count);
-UZI_API errno_t wmemmove_s(WCHAR* dest, size_t numberOfElements, const WCHAR* src, size_t count);
 
 #ifdef __cplusplus
 }

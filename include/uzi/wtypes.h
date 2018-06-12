@@ -28,17 +28,9 @@
 
 #include <uzi/spec.h>
 
-#ifdef WINPR_HAVE_STDBOOL_H
 #include <stdbool.h>
-#endif
-
-#ifdef WINPR_HAVE_STDINT_H
 #include <stdint.h>
-#endif
-
-#ifdef WINPR_HAVE_INTTYPES_H
 #include <inttypes.h>
-#endif
 
 #include <limits.h>
 
@@ -74,15 +66,6 @@ typedef LONG_PTR SSIZE_T;
 #define WINAPI
 #define CDECL
 
-#ifndef FAR
-#define FAR
-#endif
-
-#ifndef NEAR
-#define NEAR
-#endif
-
-#ifdef WINPR_HAVE_STDINT_H
 typedef int8_t                  __int8;
 typedef uint8_t                 __uint8;
 typedef int16_t                 __int16;
@@ -91,42 +74,7 @@ typedef int32_t                 __int32;
 typedef uint32_t                __uint32;
 typedef int64_t                 __int64;
 typedef uint64_t                __uint64;
-#else
-#if UCHAR_MAX == 0xFF
-typedef signed char             __int8;
-typedef unsigned char           __uint8;
-#else
-#error "8-bit type not configured"
-#endif
-#if USHRT_MAX == 0xFFFF
-typedef short                   __int16;
-typedef unsigned short          __uint16;
-#elif UINT_MAX == 0xFFFF
-typedef int                     __int16;
-typedef unsigned int            __uint16;
-#error "16-bit type not configured"
-#endif
-#if UINT_MAX == 0xFFFFFFFF
-typedef int                     __int32;
-typedef unsigned int            __uint32;
-#elif ULONG_MAX == 0xFFFFFFFF
-typedef long                    __int32;
-typedef unsigned long           __uint32;
-#else
-#error "32-bit type not configured"
-#endif
-#if ULONG_MAX == 0xFFFFFFFFFFFFFFFF
-typedef long                    __int64;
-typedef unsigned long           __uint64;
-#elif ULLONG_MAX == 0xFFFFFFFFFFFFFFFF
-typedef long long               __int64;
-typedef unsigned long long      __uint64;
-#else
-#error "64-bit type not configured"
-#endif
-#endif /* WINPR_HAVE_STDINT_H */
 
-#ifdef WINPR_HAVE_STDINT_H
 #if defined(__ILP64__) || defined(__LP64__)
 #define __int3264 int64_t
 #define __uint3264 uint64_t
@@ -134,16 +82,6 @@ typedef unsigned long long      __uint64;
 #define __int3264 int32_t
 #define __uint3264 uint32_t
 #endif
-#else
-#if defined(__ILP64__) || defined(__LP64__)
-#define __int3264 __int64
-#define __uint3264 __uint64
-#else
-#define __int3264 __int32
-#define __uint3264 __uint32
-#endif
-#endif /* WINPR_HAVE_STDINT_H */
-
 
 typedef void* PVOID, *LPVOID, *PVOID64, *LPVOID64;
 
@@ -245,19 +183,6 @@ typedef double DOUBLE;
 typedef void* HANDLE, *PHANDLE, *LPHANDLE;
 typedef HANDLE HINSTANCE;
 typedef HANDLE HMODULE;
-typedef HANDLE HWND;
-typedef HANDLE HBITMAP;
-typedef HANDLE HICON;
-typedef HANDLE HCURSOR;
-typedef HANDLE HBRUSH;
-typedef HANDLE HMENU;
-
-typedef DWORD HCALL;
-
-typedef ULONG error_status_t;
-typedef LONG HRESULT;
-typedef LONG SCODE;
-typedef SCODE* PSCODE;
 
 typedef struct _GUID
 {
@@ -455,59 +380,6 @@ typedef const VOID* LPCVOID;
 #define _LPCBYTE_DEFINED
 typedef const BYTE* LPCBYTE;
 #endif
-
-/* integer format specifiers */
-#ifndef WINPR_HAVE_INTTYPES_H
-#define PRId8           "hhd"
-#define PRIi8           "hhi"
-#define PRIu8           "hhu"
-#define PRIo8           "hho"
-#define PRIx8           "hhx"
-#define PRIX8           "hhX"
-#define PRId16          "hd"
-#define PRIi16          "hi"
-#define PRIu16          "hu"
-#define PRIo16          "ho"
-#define PRIx16          "hx"
-#define PRIX16          "hX"
-#if defined(_MSC_VER)
-#define PRId32          "I32d"
-#define PRIi32          "I32i"
-#define PRIu32          "I32u"
-#define PRIo32          "I32o"
-#define PRIx32          "I32x"
-#define PRIX32          "I32X"
-#define PRId64          "I64d"
-#define PRIi64          "I64i"
-#define PRIu64          "I64u"
-#define PRIo64          "I64o"
-#define PRIx64          "I64x"
-#define PRIX64          "I64X"
-#else
-#define PRId32          "d"
-#define PRIi32          "i"
-#define PRIu32          "u"
-#define PRIo32          "o"
-#define PRIx32          "x"
-#define PRIX32          "X"
-#if ULONG_MAX == 0xFFFFFFFFFFFFFFFF
-#define PRId64          "ld"
-#define PRIi64          "li"
-#define PRIu64          "lu"
-#define PRIo64          "lo"
-#define PRIx64          "lx"
-#define PRIX64          "lX"
-#else
-#define PRId64          "lld"
-#define PRIi64          "lli"
-#define PRIu64          "llu"
-#define PRIo64          "llo"
-#define PRIx64          "llx"
-#define PRIX64          "llX"
-#endif
-#endif /* _MSC_VER */
-#endif /* WINPR_HAVE_INTTYPES_H not defined*/
-
 
 #if defined(_MSC_VER) && _MSC_VER < 1900
 /* %z not supported before MSVC 2015 */
