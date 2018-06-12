@@ -27,7 +27,6 @@
 #include <uzi/uzi.h>
 
 #include <uzi/spec.h>
-#include <uzi/string.h>
 
 #ifndef _WIN32
 

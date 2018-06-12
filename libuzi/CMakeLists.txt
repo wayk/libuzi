@@ -8,7 +8,6 @@ set(UZI_SOURCES
 	file.c
 	buffer.c
 	memory.c
-	string.c
 	unicode.c
 	interlocked.c
 	barrier.c
