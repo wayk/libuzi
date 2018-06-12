@@ -5,8 +5,6 @@ set(MODULE_PREFIX "TEST_UZI_UTILS")
 set(${MODULE_PREFIX}_DRIVER ${MODULE_NAME}.c)
 
 set(${MODULE_PREFIX}_TESTS
-	TestQueue.c
-	TestLinkedList.c
 	TestListDictionary.c)
 
 create_test_sourcelist(${MODULE_PREFIX}_SRCS

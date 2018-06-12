@@ -18,11 +18,7 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(${MODULE_PREFIX}_SRCS
-	Queue.c
-	Stack.c
-	LinkedList.c
-	ListDictionary.c
-	CountdownEvent.c)
+	ListDictionary.c)
 
 uzi_module_add(${${MODULE_PREFIX}_SRCS}
 	${${MODULE_PREFIX}_COLLECTIONS_SRCS})
