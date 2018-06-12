@@ -52,7 +52,7 @@ int Queue_Count(wQueue* queue)
 }
 
 /**
- * Lock access to the ArrayList
+ * Lock access to the Queue
  */
 
 void Queue_Lock(wQueue* queue)
@@ -61,7 +61,7 @@ void Queue_Lock(wQueue* queue)
 }
 
 /**
- * Unlock access to the ArrayList
+ * Unlock access to the Queue
  */
 
 void Queue_Unlock(wQueue* queue)

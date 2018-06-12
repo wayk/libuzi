@@ -20,7 +20,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(${MODULE_PREFIX}_SRCS
 	Queue.c
 	Stack.c
-	ArrayList.c
 	LinkedList.c
 	ListDictionary.c
 	CountdownEvent.c)

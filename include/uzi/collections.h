@@ -119,52 +119,6 @@ UZI_API void* Stack_Peek(wStack* stack);
 UZI_API wStack* Stack_New(BOOL synchronized);
 UZI_API void Stack_Free(wStack* stack);
 
-/* System.Collections.ArrayList */
-
-struct _wArrayList
-{
-	int capacity;
-	int growthFactor;
-	BOOL synchronized;
-
-	int size;
-	void** array;
-	CRITICAL_SECTION lock;
-
-	wObject object;
-};
-typedef struct _wArrayList wArrayList;
-
-UZI_API int ArrayList_Capacity(wArrayList* arrayList);
-UZI_API int ArrayList_Count(wArrayList* arrayList);
-UZI_API int ArrayList_Items(wArrayList* arrayList, ULONG_PTR** ppItems);
-UZI_API BOOL ArrayList_IsFixedSized(wArrayList* arrayList);
-UZI_API BOOL ArrayList_IsReadOnly(wArrayList* arrayList);
-UZI_API BOOL ArrayList_IsSynchronized(wArrayList* arrayList);
-
-UZI_API void ArrayList_Lock(wArrayList* arrayList);
-UZI_API void ArrayList_Unlock(wArrayList* arrayList);
-
-UZI_API void* ArrayList_GetItem(wArrayList* arrayList, int index);
-UZI_API void ArrayList_SetItem(wArrayList* arrayList, int index, void* obj);
-
-#define ArrayList_Object(_arrayList)	(&_arrayList->object)
-
-UZI_API void ArrayList_Clear(wArrayList* arrayList);
-UZI_API BOOL ArrayList_Contains(wArrayList* arrayList, void* obj);
-
-UZI_API int ArrayList_Add(wArrayList* arrayList, void* obj);
-UZI_API BOOL ArrayList_Insert(wArrayList* arrayList, int index, void* obj);
-
-UZI_API BOOL ArrayList_Remove(wArrayList* arrayList, void* obj);
-UZI_API BOOL ArrayList_RemoveAt(wArrayList* arrayList, int index);
-
-UZI_API int ArrayList_IndexOf(wArrayList* arrayList, void* obj, int startIndex, int count);
-UZI_API int ArrayList_LastIndexOf(wArrayList* arrayList, void* obj, int startIndex, int count);
-
-UZI_API wArrayList* ArrayList_New(BOOL synchronized);
-UZI_API void ArrayList_Free(wArrayList* arrayList);
-
 /* System.Collections.Specialized.ListDictionary */
 
 typedef struct _wListDictionaryItem wListDictionaryItem;

@@ -5,7 +5,6 @@ set(MODULE_PREFIX "TEST_UZI_UTILS")
 set(${MODULE_PREFIX}_DRIVER ${MODULE_NAME}.c)
 
 set(${MODULE_PREFIX}_TESTS
-	TestArrayList.c
 	TestQueue.c
 	TestLinkedList.c
 	TestListDictionary.c)
