@@ -6,7 +6,6 @@ set(UZI_SOURCES
 	dictionary.c
 	error.c
 	file.c
-	memory.c
 	unicode.c
 	interlocked.c
 	barrier.c
