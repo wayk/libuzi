@@ -22,7 +22,6 @@ set(UZI_SOURCES
 	sysinfo.c
 	thread.c
 	thread.h
-	tls.c
 	timer.c
 	wait.c
 	uzi.c)

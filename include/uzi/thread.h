@@ -52,19 +52,6 @@ UZI_API BOOL SwitchToThread(void);
 
 UZI_API BOOL TerminateThread(HANDLE hThread, DWORD dwExitCode);
 
-/* Processor */
-
-UZI_API DWORD GetCurrentProcessorNumber(void);
-
-/* Thread-Local Storage */
-
-#define TLS_OUT_OF_INDEXES	((DWORD) 0xFFFFFFFF)
-
-UZI_API DWORD TlsAlloc(void);
-UZI_API LPVOID TlsGetValue(DWORD dwTlsIndex);
-UZI_API BOOL TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
-UZI_API BOOL TlsFree(DWORD dwTlsIndex);
-
 #else
 
 /*
