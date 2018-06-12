@@ -438,7 +438,7 @@ macro(uzi_definition_add)
 	set(UZI_DEFINITIONS ${UZI_DEFINITIONS} PARENT_SCOPE)
 endmacro()
 
-set(UZI_MODULES api core handle error file interlocked library pool synch sysinfo thread utils winsock)
+set(UZI_MODULES api core handle error file interlocked library synch sysinfo thread utils winsock)
 
 foreach(UZI_MODULE ${UZI_MODULES})
 	add_subdirectory(${UZI_SOURCE_DIR}/libuzi/${UZI_MODULE} ${UZI_BINARY_DIR}/libuzi/${UZI_MODULE})
